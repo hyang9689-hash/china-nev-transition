@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "notebooks/01_exploration.html",
+    "href": "notebooks/01_exploration.html",
+    "title": "Past the Tipping Point, Not Yet Transformed",
+    "section": "",
+    "text": "Exploration notebook · China NEV transition · data vintage 2026-07-12\nCentral question: How quickly is China’s dominance of new-energy vehicles in new-vehicle sales translating into the on-road fleet, and has charging infrastructure kept pace?\nThe notebook keeps annual observations, partial-year observations, registered fleet stock, and charging connectors in separate tables.\nfrom pathlib import Path\nimport sys\n\nimport pandas as pd\nfrom IPython.display import Image, display\n\nROOT = Path.cwd()\nif ROOT.name == \"notebooks\":\n    ROOT = ROOT.parent\nsys.path.insert(0, str(ROOT))\n\nfrom src.metrics import cagr, growth_contribution, percent_change, ratio, share\nfrom src.scenarios import scenario_table\n\nDATA = ROOT / \"data\" / \"processed\"\nannual = pd.read_csv(DATA / \"china_auto_market_2015_2025.csv\")\nfleet = pd.read_csv(DATA / \"fleet_charging_snapshot.csv\")\npulse = pd.read_csv(DATA / \"current_market_pulse.csv\")\ntargets = pd.read_csv(DATA / \"policy_targets.csv\")\n\nprint(f\"Loaded {len(annual)} complete annual observations: {annual.year.min()}-{annual.year.max()}\")\n\nLoaded 11 complete annual observations: 2015-2025"
+  },
+  {
+    "objectID": "notebooks/01_exploration.html#basic-mathematics",
+    "href": "notebooks/01_exploration.html#basic-mathematics",
+    "title": "Past the Tipping Point, Not Yet Transformed",
+    "section": "1. Basic mathematics",
+    "text": "1. Basic mathematics\nThe core calculations are intentionally transparent:\n\\[\\text{NEV share}_t = \\frac{\\text{NEV sales}_t}{\\text{total automobile sales}_t} \\times 100\\]\n\\[\\text{YoY growth}_t = \\left(\\frac{x_t}{x_{t-1}} - 1\\right) \\times 100\\]\n\\[\\text{CAGR} = \\left(\\frac{x_{end}}{x_{start}}\\right)^{1/n} - 1\\]\nA growth contribution above 100% is possible: it means the growing component more than explains total net growth while another component contracted.\n\nannual = annual.assign(\n    nev_share_total_sales_pct=lambda x: 100 * x.nev_sales_m / x.total_auto_sales_m,\n    nev_sales_yoy_pct=lambda x: x.nev_sales_m.pct_change() * 100,\n    non_nev_sales_m=lambda x: x.total_auto_sales_m - x.nev_sales_m,\n)\n\ndisplay(\n    annual[[\"year\", \"total_auto_sales_m\", \"nev_sales_m\", \"nev_share_total_sales_pct\", \"nev_sales_yoy_pct\"]]\n    .round(2)\n    .style.format({\n        \"total_auto_sales_m\": \"{:.2f}\",\n        \"nev_sales_m\": \"{:.2f}\",\n        \"nev_share_total_sales_pct\": \"{:.1f}%\",\n        \"nev_sales_yoy_pct\": \"{:.1f}%\",\n    })\n)\n\n\n\n\n\n\n \nyear\ntotal_auto_sales_m\nnev_sales_m\nnev_share_total_sales_pct\nnev_sales_yoy_pct\n\n\n\n\n0\n2015\n24.60\n0.33\n1.4%\nnan%\n\n\n1\n2016\n28.03\n0.51\n1.8%\n53.1%\n\n\n2\n2017\n28.88\n0.78\n2.7%\n53.2%\n\n\n3\n2018\n28.08\n1.26\n4.5%\n61.6%\n\n\n4\n2019\n25.77\n1.21\n4.7%\n-4.0%\n\n\n5\n2020\n25.31\n1.37\n5.4%\n13.3%\n\n\n6\n2021\n26.28\n3.52\n13.4%\n157.6%\n\n\n7\n2022\n26.86\n6.89\n25.6%\n95.6%\n\n\n8\n2023\n30.09\n9.49\n31.6%\n37.9%\n\n\n9\n2024\n31.44\n12.87\n40.9%\n35.5%\n\n\n10\n2025\n34.40\n16.49\n47.9%\n28.2%"
+  },
+  {
+    "objectID": "notebooks/01_exploration.html#the-first-results",
+    "href": "notebooks/01_exploration.html#the-first-results",
+    "title": "Past the Tipping Point, Not Yet Transformed",
+    "section": "2. The first results",
+    "text": "2. The first results\nThe 2025 total-sales share (47.9%) and the separately reported domestic new-sales share (50.8%) use different denominators. The registered fleet share (12.0%) is a stock measure. Keeping those definitions visible is part of the analysis, not a footnote added at the end.\n\ny2024 = annual.loc[annual.year == 2024].iloc[0]\ny2025 = annual.loc[annual.year == 2025].iloc[0]\nf2025 = fleet.loc[fleet.period == \"2025-12-31\"].iloc[0]\n\nnev_cagr = cagr(annual.iloc[0].nev_sales_m, y2025.nev_sales_m, 10)\ntotal_share = share(y2025.nev_sales_m, y2025.total_auto_sales_m)\nfleet_share = share(f2025.nev_stock_m, f2025.auto_stock_m)\ndomestic_share = pulse.loc[\n    (pulse.period == \"2025\") & (pulse.scope == \"domestic_new_vehicle_sales\"),\n    \"nev_share_reported_pct\",\n].iloc[0]\n\ntotal_growth = y2025.total_auto_sales_m - y2024.total_auto_sales_m\nnev_growth = y2025.nev_sales_m - y2024.nev_sales_m\nnon_nev_change = (\n    y2025.total_auto_sales_m - y2025.nev_sales_m\n    - y2024.total_auto_sales_m + y2024.nev_sales_m\n)\n\nsummary = pd.DataFrame(\n    {\n        \"Result\": [\n            \"NEV sales CAGR, 2015–2025\",\n            \"NEV share of total CAAM sales, 2025\",\n            \"NEV share of domestic new sales, 2025\",\n            \"NEV share of registered fleet, 2025\",\n            \"Domestic-sales flow minus fleet-stock gap\",\n            \"NEV contribution to 2025 net market growth\",\n            \"Change in non-NEV sales, 2024–2025\",\n        ],\n        \"Value\": [\n            f\"{nev_cagr:.1f}%\",\n            f\"{total_share:.1f}%\",\n            f\"{domestic_share:.1f}%\",\n            f\"{fleet_share:.1f}%\",\n            f\"{domestic_share - fleet_share:.1f} pp\",\n            f\"{growth_contribution(nev_growth, total_growth):.1f}%\",\n            f\"{non_nev_change:.2f} million\",\n        ],\n    }\n)\ndisplay(summary)\n\n\n\n\n\n\n\n\nResult\nValue\n\n\n\n\n0\nNEV sales CAGR, 2015–2025\n47.8%\n\n\n1\nNEV share of total CAAM sales, 2025\n47.9%\n\n\n2\nNEV share of domestic new sales, 2025\n50.8%\n\n\n3\nNEV share of registered fleet, 2025\n12.0%\n\n\n4\nDomestic-sales flow minus fleet-stock gap\n38.8 pp\n\n\n5\nNEV contribution to 2025 net market growth\n122.3%\n\n\n6\nChange in non-NEV sales, 2024–2025\n-0.66 million\n\n\n\n\n\n\n\nInterpretation. NEV sales grew at roughly 47.8% per year across the decade. In 2025 they generated more than all net automobile-market growth (122.3%) because estimated non-NEV sales fell by 0.66 million. This is descriptive accounting, not a causal claim.\n\ndisplay(Image(filename=str(ROOT / \"figures\" / \"first_look_dashboard.png\"), width=1100))"
+  },
+  {
+    "objectID": "notebooks/01_exploration.html#a-bounded-scenario-not-a-confident-forecast",
+    "href": "notebooks/01_exploration.html#a-bounded-scenario-not-a-confident-forecast",
+    "title": "Past the Tipping Point, Not Yet Transformed",
+    "section": "3. A bounded scenario, not a confident forecast",
+    "text": "3. A bounded scenario, not a confident forecast\nA linear extrapolation can exceed 100%, so the scenario uses log-odds:\n\\[\\operatorname{logit}(p_{t+h}) = \\operatorname{logit}(p_t) + h g\\]\nHere \\(g\\) is an explicit annual increment, not an estimated causal effect. Three values illustrate slower, baseline, and faster paths.\n\nscenarios = scenario_table(\n    anchor_year=2025,\n    anchor_share=total_share,\n    end_year=2030,\n    annual_logit_gains={\"Slower\": 0.15, \"Baseline\": 0.25, \"Faster\": 0.35},\n)\ndisplay(\n    scenarios.pivot(index=\"year\", columns=\"scenario\", values=\"nev_share_pct\")\n    .round(1)\n    .style.format(\"{:.1f}%\")\n)\ndisplay(Image(filename=str(ROOT / \"figures\" / \"scenario_paths.png\"), width=900))\n\n\n\n\n\n\nscenario\nBaseline\nFaster\nSlower\n\n\nyear\n \n \n \n\n\n\n\n2025\n47.9%\n47.9%\n47.9%\n\n\n2026\n54.2%\n56.6%\n51.7%\n\n\n2027\n60.3%\n65.0%\n55.4%\n\n\n2028\n66.1%\n72.5%\n59.1%\n\n\n2029\n71.5%\n78.9%\n62.7%\n\n\n2030\n76.3%\n84.1%\n66.1%"
+  },
+  {
+    "objectID": "notebooks/01_exploration.html#limits-and-next-checks",
+    "href": "notebooks/01_exploration.html#limits-and-next-checks",
+    "title": "Past the Tipping Point, Not Yet Transformed",
+    "section": "4. Limits and next checks",
+    "text": "4. Limits and next checks\n\nThe pre-2021 annual series was manually transcribed from CAAM charts and will receive an independent second-entry audit.\nNEA changed its charging statistical scope in 2025. The 2024 and 2025 level bars are shown with a visible break; the project uses NEA’s reported 49.7% YoY rate rather than calculating a misleading rate from incompatible endpoints.\nSales, production, exports, registrations, and fleet stock are not interchangeable.\nThe 2030 paths are transparent sensitivity scenarios. They are not probabilities and do not identify causes."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Past the Tipping Point, Not Yet Transformed",
+    "section": "",
+    "text": "ImportantThe argument in one sentence\n\n\n\nChina’s automobile transition has crossed the domestic new-sales tipping point, but it has not yet transformed the vehicles already on the road.\nThe first two numbers deliberately use different denominators: one is a flow of new domestic sales and the other is a stock of registered automobiles. Their 38.8 percentage-point gap is the project’s main empirical story. The 50.8% domestic share is source-reported; dividing total CAAM NEV sales by total CAAM automobile sales gives a separate 47.9% share (Xinhua 2026b; Ministry of Industry and Information Technology 2026a)."
+  },
+  {
+    "objectID": "index.html#the-market-changed-scale-after-2020",
+    "href": "index.html#the-market-changed-scale-after-2020",
+    "title": "Past the Tipping Point, Not Yet Transformed",
+    "section": "1. The market changed scale after 2020",
+    "text": "1. The market changed scale after 2020\nNEV sales rose from 0.331 million in 2015 to 16.490 million in 2025, equivalent to a 47.8% ten-year CAGR. Total automobile sales did not grow at anything close to that rate. As a result, the NEV share of total CAAM sales rose from 1.3% to 47.9%.\n\n\n\nYear\nTotal auto sales (m)\nNEV sales (m)\nDerived NEV share\n\n\n\n\n2015\n24.60\n0.33\n1.3%\n\n\n2020\n25.31\n1.37\n5.4%\n\n\n2021\n26.28\n3.52\n13.4%\n\n\n2023\n30.09\n9.50\n31.6%\n\n\n2024\n31.44\n12.87\n40.9%\n\n\n2025\n34.40\n16.49\n47.9%\n\n\n\nThe composition of growth is even more revealing. From 2024 to 2025, total automobile sales increased by 2.964 million, while NEV sales increased by 3.624 million. NEVs therefore accounted for 122.3% of net market growth; the residual estimate for non-NEV sales fell by 0.660 million. A contribution above 100% is mathematically possible because another component contracted."
+  },
+  {
+    "objectID": "index.html#crossing-50-in-sales-does-not-mean-half-the-fleet-is-electric",
+    "href": "index.html#crossing-50-in-sales-does-not-mean-half-the-fleet-is-electric",
+    "title": "Past the Tipping Point, Not Yet Transformed",
+    "section": "2. Crossing 50% in sales does not mean half the fleet is electric",
+    "text": "2. Crossing 50% in sales does not mean half the fleet is electric\nAt end-2025, China had 43.97 million NEVs in a civilian automobile stock of 366.11 million, or approximately 12.0% (National Bureau of Statistics of China 2026). Public- security reporting gives the same 12.01% share and records 30.22 million BEVs, 68.74% of the NEV fleet (Ministry of Public Security 2026).\nThis resolves an apparent paradox. New sales can change quickly, but the fleet turns over slowly. The sales figure is a flow over one year; the fleet figure is the accumulation of many years of registrations, retirements, and vehicle lifetimes. The gap is not evidence of inconsistent data. It is the transition."
+  },
+  {
+    "objectID": "index.html#charging-growth-is-rapid-but-the-series-has-a-documented-break",
+    "href": "index.html#charging-growth-is-rapid-but-the-series-has-a-documented-break",
+    "title": "Past the Tipping Point, Not Yet Transformed",
+    "section": "3. Charging growth is rapid, but the series has a documented break",
+    "text": "3. Charging growth is rapid, but the series has a documented break\nThe NEA reported 20.092 million connectors at end-2025: 4.717 million public and 15.375 million private. Private connectors were therefore 76.5% of the network. The stock implied 2.19 registered NEVs per connector, or 9.32 per public connector (National Energy Administration 2026a).\nThe agency reported 49.7% year-on-year connector growth in 2025. However, it also changed the statistical scope and introduced a new national reporting system during 2025 (National Energy Administration 2025b). This report therefore does not calculate a growth rate by dividing the old-scope end-2024 level by the revised-scope end-2025 level. The dashboard marks the break visibly.\nBy end-May 2026, the network had reached 22.497 million connectors, including 4.951 million public and 17.546 million private connectors (National Energy Administration 2026b). That was already 80.3% of the official end-2027 target of at least 28 million. Moving from the end-2025 level to 28 million in two years requires roughly 18.1% annual compound growth (National Development and Reform Commission and others 2025)."
+  },
+  {
+    "objectID": "index.html#the-latest-pulse-is-strong-but-not-an-annual-observation",
+    "href": "index.html#the-latest-pulse-is-strong-but-not-an-annual-observation",
+    "title": "Past the Tipping Point, Not Yet Transformed",
+    "section": "4. The latest pulse is strong but not an annual observation",
+    "text": "4. The latest pulse is strong but not an annual observation\nIn the first half of 2026, CAAM reported 7.446 million NEV sales. The H1 NEV share of total CAAM sales was 49.6%, while the single-month June share reached 58.5% (Xinhua 2026a; Ministry of Industry and Information Technology 2026b). Those numbers are current context, not an extra point on the 2015–2025 annual series."
+  }
+]

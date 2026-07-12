@@ -1,0 +1,223 @@
+---
+title: "Past the Tipping Point, Not Yet Transformed"
+subtitle: "China's NEV sales, fleet, and charging transition, 2015–2026"
+author: "Project Author"
+date: "2026-07-12"
+date-format: "D MMMM YYYY"
+description: "A reproducible analysis of how China's new-energy vehicle sales are translating into the on-road fleet and charging network."
+image: figures/first_look_dashboard.png
+---
+
+::: {.callout-important appearance="simple"}
+## The argument in one sentence
+
+China's automobile transition has crossed the **domestic new-sales** tipping
+point, but it has not yet transformed the **vehicles already on the road**.
+:::
+
+::: {.grid}
+::: {.g-col-6 .g-col-md-3}
+::: {.metric-card}
+<span class="metric-value">50.8%</span>
+<span class="metric-label">NEV share of domestic new-vehicle sales in 2025</span>
+:::
+:::
+::: {.g-col-6 .g-col-md-3}
+::: {.metric-card .teal}
+<span class="metric-value">12.0%</span>
+<span class="metric-label">NEV share of the registered automobile fleet at end-2025</span>
+:::
+:::
+::: {.g-col-6 .g-col-md-3}
+::: {.metric-card .navy}
+<span class="metric-value">20.1m</span>
+<span class="metric-label">Charging connectors installed at end-2025</span>
+:::
+:::
+::: {.g-col-6 .g-col-md-3}
+::: {.metric-card .gold}
+<span class="metric-value">47.8%</span>
+<span class="metric-label">Compound annual growth of NEV sales, 2015–2025</span>
+:::
+:::
+:::
+
+The first two numbers deliberately use different denominators: one is a flow
+of new domestic sales and the other is a stock of registered automobiles. Their
+**38.8 percentage-point gap** is the project's main empirical story. The 50.8%
+domestic share is source-reported; dividing total CAAM NEV sales by total CAAM
+automobile sales gives a separate 47.9% share [@scio2026tipping; @miit2026auto].
+
+# Research question
+
+**How quickly is China's dominance of new-energy vehicles in new-vehicle sales
+translating into the on-road fleet, and has charging infrastructure kept pace?**
+
+Three subquestions make this answerable:
+
+1. How did annual NEV sales and their share of the total automobile market
+   change from 2015 to 2025?
+2. How large is the gap between the new-sales flow and the registered-fleet
+   stock, and what does it mean?
+3. How quickly is charging capacity expanding, and how close is the connector
+   stock to the official 2027 target?
+
+# Evidence at a glance
+
+![Four views of China's NEV transition: annual automobile and NEV sales, NEV share of total CAAM sales, the 2025 domestic-sales versus fleet-stock gap, and charging connector levels with a visible 2025 methodology break.](figures/first_look_dashboard.png){#fig-dashboard fig-alt="Dashboard showing NEV sales growing from 0.33 million in 2015 to 16.49 million in 2025, total-sales share rising to 47.9 percent, domestic new-sales share at 50.8 percent versus fleet share at 12 percent, and charging connectors rising to 22.5 million by May 2026." width="100%"}
+
+# Data and method
+
+The annual market series combines CAAM's historical charts and December
+statistical releases with official 2024 and 2025 summaries
+[@caam2021autoseries; @caam2021nevseries; @caam2022autosales;
+@caam2022nevsales; @caam2023autosales; @caam2023nevsales;
+@caam2024autosales; @caam2024nevsales; @gov2025auto; @miit2026auto].
+Fleet observations come from national statistical and public-security reporting
+[@nbs2025communique; @nbs2026communique; @mps2026fleet]. Charging observations
+and the 2027 target come from the National Energy Administration and National
+Development and Reform Commission [@nea2025charging; @nea2026charging;
+@nea2026may; @ndrc2025target].
+
+The core mathematics is intentionally basic and inspectable:
+
+$$
+\text{NEV share}_t =
+\frac{\text{NEV sales}_t}{\text{total automobile sales}_t}\times 100
+$$
+
+$$
+\text{YoY growth}_t =
+\left(\frac{x_t}{x_{t-1}}-1\right)\times 100
+$$
+
+$$
+\text{CAGR} =
+\left(\frac{x_{end}}{x_{start}}\right)^{1/n}-1
+$$
+
+All derived indicators are rebuilt by `scripts/build_analysis.py`; the executed
+notebook shows the arithmetic and its outputs.
+
+::: {.definition-note}
+**Definition discipline.** “NEV” includes battery-electric, plug-in hybrid
+(including range-extender), and fuel-cell passenger and commercial vehicles.
+CAAM sales are not retail registrations; connectors are not charging stations;
+and partial-year observations are never appended to the complete annual series.
+:::
+
+# Findings
+
+## 1. The market changed scale after 2020
+
+NEV sales rose from **0.331 million in 2015** to **16.490 million in 2025**,
+equivalent to a **47.8% ten-year CAGR**. Total automobile sales did not grow at
+anything close to that rate. As a result, the NEV share of total CAAM sales rose
+from **1.3%** to **47.9%**.
+
+| Year | Total auto sales (m) | NEV sales (m) | Derived NEV share |
+|---:|---:|---:|---:|
+| 2015 | 24.60 | 0.33 | 1.3% |
+| 2020 | 25.31 | 1.37 | 5.4% |
+| 2021 | 26.28 | 3.52 | 13.4% |
+| 2023 | 30.09 | 9.50 | 31.6% |
+| 2024 | 31.44 | 12.87 | 40.9% |
+| 2025 | 34.40 | 16.49 | 47.9% |
+
+The composition of growth is even more revealing. From 2024 to 2025, total
+automobile sales increased by **2.964 million**, while NEV sales increased by
+**3.624 million**. NEVs therefore accounted for **122.3% of net market growth**;
+the residual estimate for non-NEV sales fell by **0.660 million**. A contribution
+above 100% is mathematically possible because another component contracted.
+
+## 2. Crossing 50% in sales does not mean half the fleet is electric
+
+At end-2025, China had **43.97 million NEVs** in a civilian automobile stock of
+**366.11 million**, or approximately **12.0%** [@nbs2026communique]. Public-
+security reporting gives the same 12.01% share and records 30.22 million BEVs,
+68.74% of the NEV fleet [@mps2026fleet].
+
+This resolves an apparent paradox. New sales can change quickly, but the fleet
+turns over slowly. The sales figure is a flow over one year; the fleet figure is
+the accumulation of many years of registrations, retirements, and vehicle
+lifetimes. The gap is not evidence of inconsistent data. It is the transition.
+
+## 3. Charging growth is rapid, but the series has a documented break
+
+The NEA reported **20.092 million connectors** at end-2025: 4.717 million public
+and 15.375 million private. Private connectors were therefore **76.5%** of the
+network. The stock implied **2.19 registered NEVs per connector**, or **9.32 per
+public connector** [@nea2026charging].
+
+The agency reported 49.7% year-on-year connector growth in 2025. However, it
+also changed the statistical scope and introduced a new national reporting
+system during 2025 [@nea2025method]. This report therefore **does not** calculate
+a growth rate by dividing the old-scope end-2024 level by the revised-scope
+end-2025 level. The dashboard marks the break visibly.
+
+By end-May 2026, the network had reached **22.497 million connectors**, including
+4.951 million public and 17.546 million private connectors [@nea2026may]. That
+was already **80.3%** of the official end-2027 target of at least 28 million.
+Moving from the end-2025 level to 28 million in two years requires roughly
+**18.1% annual compound growth** [@ndrc2025target].
+
+## 4. The latest pulse is strong but not an annual observation
+
+In the first half of 2026, CAAM reported **7.446 million NEV sales**. The H1 NEV
+share of total CAAM sales was 49.6%, while the single-month June share reached
+58.5% [@gov2026h1; @miit2026june]. Those numbers are current context, not an
+extra point on the 2015–2025 annual series.
+
+# Scenarios to 2030
+
+![Observed annual NEV share through 2025 followed by slower, baseline, and faster bounded log-odds scenarios to 2030. Separate markers show the 2026 first-half and June observations.](figures/scenario_paths.png){#fig-scenarios fig-alt="Line chart showing observed NEV total-sales share rising to 47.9 percent in 2025 and three illustrative scenario paths reaching about 67, 76, and 84 percent by 2030, with separate 2026 partial-period markers." width="90%"}
+
+A straight-line share projection can exceed 100%, so the scenario works in
+log-odds space:
+
+$$
+\operatorname{logit}(p_{t+h}) = \operatorname{logit}(p_t) + hg
+$$
+
+The three values of $g$ (0.15, 0.25, and 0.35) are explicit sensitivities,
+anchored to the observed 2025 total-sales share. They imply 2030 shares of about
+67%, 76%, and 84%. These are **illustrations, not probabilities or causal
+forecasts**. A later milestone will validate a model on held-out years and add a
+fleet-turnover simulation.
+
+# What this project does not claim
+
+- It does not claim that charging construction caused NEV adoption.
+- It does not mix CAAM sales with passenger-car retail data or registrations.
+- It does not treat the 2026 partial-year pulse as a completed year.
+- It does not hide the 2025 charging methodology break.
+- It does not average conflicting NBS and CAAM production totals.
+
+# Reproducibility
+
+From the repository root:
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/build_analysis.py
+python scripts/build_notebook.py
+python -m unittest discover -s tests -v
+quarto render
+```
+
+The source register records publisher, title, date, retrieval date, URL,
+coverage, and definition notes. The notebook is committed with executed outputs;
+the Quarto source and rendered HTML are both included for inspection.
+
+# Next milestones
+
+1. Independently re-enter and verify the pre-2021 chart values.
+2. Archive permissible raw source files and add SHA-256 checksums.
+3. Build a consistent June-2025-onward monthly charging series.
+4. Add BEV/PHEV composition and automobile-export modules.
+5. Add a fleet-turnover model with conservative, baseline, and accelerated
+   retirement assumptions.
+6. Replace the author and GitHub placeholders before publication.
+
+# References
+

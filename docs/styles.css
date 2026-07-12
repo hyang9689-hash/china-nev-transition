@@ -1,0 +1,94 @@
+:root {
+  --navy: #102a43;
+  --orange: #e4572e;
+  --teal: #178f8f;
+  --slate: #627d98;
+  --pale: #f4f7f9;
+  --line: #d9e2ec;
+}
+
+body {
+  color: #243b53;
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--navy);
+  letter-spacing: -0.015em;
+}
+
+.navbar {
+  background: var(--navy);
+}
+
+.quarto-title .title {
+  color: var(--navy);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.quarto-title .subtitle {
+  color: var(--slate);
+}
+
+.metric-card {
+  height: 100%;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--orange);
+  border-radius: 0.45rem;
+  background: white;
+  box-shadow: 0 0.25rem 1rem rgb(16 42 67 / 6%);
+}
+
+.metric-card.teal {
+  border-top-color: var(--teal);
+}
+
+.metric-card.navy {
+  border-top-color: var(--navy);
+}
+
+.metric-card.gold {
+  border-top-color: #f3b61f;
+}
+
+.metric-value {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--navy);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.metric-label {
+  display: block;
+  color: var(--slate);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.callout-important {
+  border-left-color: var(--orange);
+}
+
+.figure-caption,
+figcaption {
+  color: var(--slate);
+  font-size: 0.86rem;
+}
+
+table {
+  font-size: 0.92rem;
+}
+
+.definition-note {
+  padding: 0.9rem 1rem;
+  border-left: 4px solid var(--teal);
+  background: var(--pale);
+  color: #486581;
+}
+

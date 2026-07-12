@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: docs
+  resources:
+    - .nojekyll
+  render:
+    - index.qmd
+    - notebooks/01_exploration.ipynb
+
+website:
+  title: "China NEV Transition"
+  site-url: "https://YOUR-GITHUB-USERNAME.github.io/china-nev-transition/"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Report
+      - href: notebooks/01_exploration.ipynb
+        text: Notebook
+    right:
+      - icon: github
+        href: "https://github.com/YOUR-GITHUB-USERNAME/china-nev-transition"
+        aria-label: GitHub
+  page-footer:
+    left: "Past the Tipping Point, Not Yet Transformed"
+    right: "Data vintage: 12 July 2026"
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    smooth-scroll: true
+    link-external-newwindow: true
+    fig-cap-location: bottom
+
+execute:
+  enabled: false
+  freeze: auto
