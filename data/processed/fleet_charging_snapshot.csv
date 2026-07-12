@@ -1,0 +1,5 @@
+period,auto_stock_m,nev_stock_m,charging_total_m,charging_public_m,charging_private_m,public_power_gw,avg_public_kw,fleet_source_id,charging_source_id
+2024-12-31,352.68,31.40,12.818,,,,,nbs2025communique,nea2025charging
+2025-12-31,366.11,43.97,20.092,4.717,15.375,220.0,46.53,nbs2026communique,nea2026charging
+2026-05-31,,,22.497,4.951,17.546,242.0,48.89,,nea2026may
+

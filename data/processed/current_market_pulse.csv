@@ -1,0 +1,6 @@
+period,period_type,total_auto_sales_m,nev_sales_m,nev_share_reported_pct,scope,source_id
+2025,full_year,34.400,16.490,47.9,total_CAAM_sales_including_exports,miit2026auto
+2025,full_year,,,50.8,domestic_new_vehicle_sales,scio2026tipping
+2026-H1,partial_year,15.017,7.446,49.6,total_CAAM_sales_including_exports,miit2026june
+2026-06,single_month,2.810,1.643,58.5,total_CAAM_sales_including_exports,miit2026june
+

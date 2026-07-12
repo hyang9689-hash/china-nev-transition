@@ -1,0 +1,5 @@
+target_date,metric,target_value,unit,comparison,source_id
+2027-12-31,total_charging_facilities,28.0,million,at_least,ndrc2025target
+2027-12-31,public_charging_power,300.0,GW,more_than,ndrc2025target
+2027-12-31,supported_electric_vehicles,80.0,million,more_than,ndrc2025target
+
