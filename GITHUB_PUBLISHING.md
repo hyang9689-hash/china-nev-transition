@@ -61,3 +61,7 @@ git push origin v0.1.0
 Create a GitHub release from that tag and use the `CHANGELOG.md` entry as the
 release notes. Reserve `v1.0.0` for the independently audited final analysis.
 
+## Official reference pages
+
+- [GitHub: using custom workflows with GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
+- [Quarto: publishing to GitHub Pages](https://quarto.org/docs/publishing/github-pages.html)

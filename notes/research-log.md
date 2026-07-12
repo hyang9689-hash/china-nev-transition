@@ -17,3 +17,12 @@
 On Day 2, archive source captures where redistribution permits, calculate
 checksums, and independently double-check every pre-2021 chart transcription.
 
+## 2026-07-12 — First-look verification
+
+- All 8 unit tests passed.
+- All 5 notebook code cells executed with 0 stored errors.
+- Quarto rendered both the report and notebook pages to `docs/`.
+- The signature dashboard was visually checked at full resolution.
+- The repository contains separate commits for scaffold, source protocol, data,
+  analysis, notebook, report, documentation, and CI.
+- No Git remote is configured; publication remains under the author's control.
