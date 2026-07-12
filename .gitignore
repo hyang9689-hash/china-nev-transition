@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+.quarto/
+_freeze/
+_site/
+.jupyter/
+.cache/
+*.log
+.DS_Store
+Thumbs.db
+

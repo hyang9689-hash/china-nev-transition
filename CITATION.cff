@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it using these metadata."
+title: "Past the Tipping Point, Not Yet Transformed"
+type: software
+authors:
+  - name: "Project Author"
+version: 0.1.0
+date-released: 2026-07-12
+license: MIT
+
