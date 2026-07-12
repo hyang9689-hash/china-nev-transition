@@ -1,0 +1,14 @@
+metric,value,unit,formula_or_scope
+nev_sales_cagr_2015_2025,47.8176,percent,CAGR
+nev_share_total_sales_2025,47.9360,percent,NEV sales / total CAAM automobile sales
+nev_share_domestic_sales_2025,50.8000,percent,source-reported domestic new-vehicle share
+nev_fleet_share_2025,12.0101,percent,NEV stock / civilian automobile stock
+sales_flow_minus_fleet_stock_gap,38.7899,percentage_points,domestic new-sales share - fleet share
+charging_growth_reported_2025,49.7000,percent,source-reported YoY after NEA scope adjustment
+nev_stock_growth_2024_2025,40.0318,percent,year-end registered NEV stock
+nevs_per_total_connector_2025,2.1884,ratio,registered NEVs / all connectors
+nevs_per_public_connector_2025,9.3216,ratio,registered NEVs / public connectors
+charging_target_progress_may_2026,80.3464,percent,latest connector stock / 2027 target
+charging_cagr_needed_2025_2027,18.0504,percent,CAGR from end-2025 to end-2027 target
+nev_contribution_to_net_market_growth_2025,122.2672,percent,NEV sales change / total sales change
+non_nev_sales_change_2024_2025,-0.6600,million_vehicles,derived residual change

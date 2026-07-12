@@ -1,0 +1,12 @@
+year,total_auto_sales_m,nev_sales_m,total_sales_source_id,nev_sales_source_id,nev_share_total_sales_pct,nev_sales_yoy_pct,total_sales_yoy_pct,non_nev_sales_m
+2015,24.5980,0.3311,caam2021autoseries,caam2021nevseries,1.3460,,,24.2669
+2016,28.0280,0.5070,caam2021autoseries,caam2021nevseries,1.8089,53.1259,13.9442,27.5210
+2017,28.8790,0.7770,caam2021autoseries,caam2021nevseries,2.6905,53.2544,3.0362,28.1020
+2018,28.0810,1.2560,caam2021autoseries,caam2021nevseries,4.4728,61.6474,-2.7633,26.8250
+2019,25.7690,1.2060,caam2021autoseries,caam2021nevseries,4.6800,-3.9809,-8.2333,24.5630
+2020,25.3110,1.3670,caam2021autoseries,caam2021nevseries,5.4008,13.3499,-1.7773,23.9440
+2021,26.2750,3.5210,caam2022autosales,caam2022nevsales,13.4006,157.5713,3.8086,22.7540
+2022,26.8640,6.8870,caam2023autosales,caam2023nevsales,25.6365,95.5978,2.2417,19.9770
+2023,30.0940,9.4950,caam2024autosales,caam2024nevsales,31.5511,37.8684,12.0235,20.5990
+2024,31.4360,12.8660,gov2025auto,gov2025auto,40.9276,35.5029,4.4594,18.5700
+2025,34.4000,16.4900,miit2026auto,miit2026auto,47.9360,28.1673,9.4287,17.9100
