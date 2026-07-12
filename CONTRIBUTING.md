@@ -18,6 +18,7 @@ definitions and provenance must survive review.
 python scripts/build_analysis.py
 python -m unittest discover -s tests -v
 quarto render
+python scripts/validate_project.py
 ```
 
 If the notebook source changes, regenerate and execute it before committing.
@@ -35,4 +36,3 @@ test: reject duplicate annual observations
 
 Do not combine unrelated research, data, analysis, and formatting changes in a
 single commit.
-

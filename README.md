@@ -83,6 +83,7 @@ python scripts/build_notebook.py
 python -m jupyter nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb
 python -m unittest discover -s tests -v
 quarto render
+python scripts/validate_project.py
 ```
 
 On macOS or Linux, activate with `source .venv/bin/activate`.
