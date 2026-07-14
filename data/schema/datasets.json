@@ -104,6 +104,59 @@
       },
       "row_rules": [{"left": "nev_exports_m", "operator": "<=", "right": "total_auto_exports_m"}],
       "expected_integer_sequence": {"column": "year", "start": 2021, "end": 2025}
+    },
+    "data/manual/fleet_turnover_assumptions.csv": {
+      "primary_key": ["scenario"],
+      "columns": {
+        "scenario": {"type": "string", "nullable": false, "unit": "category", "role": "dimension", "enum": ["Conservative", "Baseline", "Accelerated"], "description": "Named bundle of sales-share and fleet-turnover assumptions."},
+        "annual_logit_gain": {"type": "number", "nullable": false, "unit": "log-odds per year", "role": "assumption", "minimum": 0, "maximum": 1, "description": "Annual increment applied to the log-odds of the NEV domestic-inflow share."},
+        "total_turnover_rate_pct": {"type": "number", "nullable": false, "unit": "percent of opening fleet", "role": "assumption", "minimum": 0, "maximum": 100, "description": "Annual total vehicle retirements as a share of opening registered automobile stock."},
+        "nev_relative_retirement_weight": {"type": "number", "nullable": false, "unit": "relative weight", "role": "assumption", "minimum": 0, "maximum": 1, "description": "NEV retirement-allocation weight relative to an ICE vehicle to reflect the younger NEV stock."},
+        "annual_domestic_inflow_growth_pct": {"type": "number", "nullable": false, "unit": "percent per year", "role": "assumption", "minimum": -99.9, "maximum": 20, "description": "Annual growth applied to the 2025 domestic-inflow proxy."},
+        "description": {"type": "string", "nullable": false, "unit": "text", "role": "metadata", "description": "Plain-language interpretation of the scenario bundle."}
+      }
+    },
+    "data/processed/fleet_turnover_scenarios.csv": {
+      "primary_key": ["scenario", "year"],
+      "columns": {
+        "scenario": {"type": "string", "nullable": false, "unit": "category", "role": "dimension", "enum": ["Conservative", "Baseline", "Accelerated"], "description": "Scenario bundle."},
+        "year": {"type": "integer", "nullable": false, "unit": "year", "role": "dimension", "minimum": 2026, "maximum": 2035, "description": "Projected calendar year."},
+        "opening_nev_stock_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_state", "minimum": 0, "description": "Opening registered NEV stock."},
+        "opening_ice_stock_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_state", "minimum": 0, "description": "Opening registered non-NEV stock."},
+        "domestic_inflow_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_flow", "minimum": 0, "description": "Sales-minus-exports domestic-inflow proxy."},
+        "nev_inflow_share_pct": {"type": "number", "nullable": false, "unit": "percent", "role": "model_flow", "minimum": 0, "maximum": 100, "description": "Scenario NEV share of annual domestic inflow."},
+        "nev_inflow_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_flow", "minimum": 0, "description": "Annual NEV inflow proxy."},
+        "ice_inflow_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_flow", "minimum": 0, "description": "Annual non-NEV inflow proxy."},
+        "total_retirements_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_flow", "minimum": 0, "description": "Annual scenario retirements from the opening fleet."},
+        "nev_retirements_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_flow", "minimum": 0, "description": "Annual NEV retirements after relative-age weighting."},
+        "ice_retirements_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_flow", "minimum": 0, "description": "Annual non-NEV retirements after relative-age weighting."},
+        "nev_stock_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_state", "minimum": 0, "description": "Ending registered NEV stock."},
+        "ice_stock_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_state", "minimum": 0, "description": "Ending registered non-NEV stock."},
+        "total_auto_stock_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "model_state", "minimum": 0, "description": "Ending total registered automobile stock."},
+        "nev_fleet_share_pct": {"type": "number", "nullable": false, "unit": "percent", "role": "derived", "minimum": 0, "maximum": 100, "description": "NEV share of ending automobile stock."},
+        "annual_logit_gain": {"type": "number", "nullable": false, "unit": "log-odds per year", "role": "assumption", "minimum": 0, "maximum": 1, "description": "Scenario sales-share increment."},
+        "total_turnover_rate_pct": {"type": "number", "nullable": false, "unit": "percent of opening fleet", "role": "assumption", "minimum": 0, "maximum": 100, "description": "Scenario total annual turnover."},
+        "nev_relative_retirement_weight": {"type": "number", "nullable": false, "unit": "relative weight", "role": "assumption", "minimum": 0, "maximum": 1, "description": "NEV retirement-allocation weight relative to ICE."},
+        "annual_domestic_inflow_growth_pct": {"type": "number", "nullable": false, "unit": "percent per year", "role": "assumption", "minimum": -99.9, "maximum": 20, "description": "Scenario annual domestic-inflow growth."},
+        "accounting_gap_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "validation", "description": "Floating-point residual for the total stock-flow accounting identity."}
+      },
+      "row_rules": [
+        {"left": "nev_inflow_m", "operator": "<=", "right": "domestic_inflow_m"},
+        {"left": "nev_retirements_m", "operator": "<=", "right": "total_retirements_m"},
+        {"left": "nev_stock_m", "operator": "<=", "right": "total_auto_stock_m"}
+      ]
+    },
+    "data/processed/sales_share_backtest_2023_2025.csv": {
+      "primary_key": ["year"],
+      "columns": {
+        "year": {"type": "integer", "nullable": false, "unit": "year", "role": "dimension", "minimum": 2023, "maximum": 2025, "description": "Held-out calendar year."},
+        "observed_nev_share_pct": {"type": "number", "nullable": false, "unit": "percent", "role": "observation", "minimum": 0, "maximum": 100, "description": "Observed NEV share of total CAAM sales."},
+        "predicted_nev_share_pct": {"type": "number", "nullable": false, "unit": "percent", "role": "model_output", "minimum": 0, "maximum": 100, "description": "Prediction from a log-odds trend fitted through 2022."},
+        "absolute_error_pp": {"type": "number", "nullable": false, "unit": "percentage points", "role": "validation", "minimum": 0, "description": "Absolute held-out prediction error."},
+        "train_end_year": {"type": "integer", "nullable": false, "unit": "year", "role": "metadata", "minimum": 2022, "maximum": 2022, "description": "Final year used to fit the backtest trend."},
+        "annual_logit_gain_fitted": {"type": "number", "nullable": false, "unit": "log-odds per year", "role": "model_parameter", "description": "Least-squares annual log-odds trend fitted to 2015-2022."}
+      },
+      "expected_integer_sequence": {"column": "year", "start": 2023, "end": 2025}
     }
   }
 }

@@ -1,0 +1,4 @@
+year,observed_nev_share_pct,predicted_nev_share_pct,absolute_error_pp,train_end_year,annual_logit_gain_fitted
+2023,31.5511,25.5767,5.9744,2022,0.4223
+2024,40.9276,34.3932,6.5344,2022,0.4223
+2025,47.9360,44.4342,3.5018,2022,0.4223

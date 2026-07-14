@@ -212,8 +212,53 @@ $$
 The three values of $g$ (0.15, 0.25, and 0.35) are explicit sensitivities,
 anchored to the observed 2025 total-sales share. They imply 2030 shares of about
 67%, 76%, and 84%. These are **illustrations, not probabilities or causal
-forecasts**. A later milestone will validate a model on held-out years and add a
-fleet-turnover simulation.
+forecasts**.
+
+As a limited form check, a log-odds trend fitted only to 2015-2022 data was
+tested on 2023-2025. It underpredicted all three held-out observations, with
+absolute errors of 6.0, 6.5, and 3.5 percentage points and a **5.34
+percentage-point mean absolute error**. The backtest shows that even a bounded
+functional form can miss acceleration; it does not turn the sensitivity paths
+into validated forecasts.
+
+# Fleet-turnover sensitivities to 2035
+
+![Two-panel fleet-turnover sensitivity showing projected NEV shares of annual domestic inflow and registered fleet stock from the observed 2025 anchor through 2035.](figures/fleet_turnover_scenarios.png){#fig-fleet-turnover fig-alt="The annual NEV inflow share rises rapidly across conservative, baseline, and accelerated sensitivities, while the registered fleet share follows more slowly. In 2035, the modeled fleet shares are about 50, 57, and 63 percent." width="100%"}
+
+The model begins with the observed end-2025 stock of **43.97 million NEVs in
+366.11 million automobiles** and the 2025 non-export residual proxy of **27.302
+million vehicle inflows**, 50.8% of them NEVs. Each scenario then applies the
+same auditable accounting identity:
+
+$$
+	ext{ending stock}
+=
+	ext{opening stock}
++
+	ext{inflow}
+-
+	ext{retirements}
+$$
+
+The annual domestic-inflow volume is held constant to isolate turnover and
+composition. Conservative, baseline, and accelerated bundles use annual total
+fleet-turnover rates of **5.5%, 6.0%, and 7.0%**, paired with the same 0.15,
+0.25, and 0.35 log-odds gains used in the sales-share sensitivities. Because
+China's registered NEV stock is comparatively young, an NEV receives **0.25
+times** the near-term retirement-allocation weight of a non-NEV. Every rate and
+weight is stored in the machine-readable assumptions table, not hidden in the
+plotting code.
+
+In the baseline, the NEV share of annual domestic inflow reaches **78.3% in
+2030**, but the NEV fleet share reaches only **33.4%**. By 2035 the baseline
+figures are **92.6% of inflow and 56.7% of fleet stock**. Across all three
+bundles, the 2035 fleet share ranges from **50.2% to 63.3%** and total stock
+ranges from **378.5 million to 422.4 million vehicles**.
+
+These results quantify the flow-stock lag under explicit assumptions; they are
+not registration forecasts. The model has no vehicle-age cohorts, scrappage
+policy shocks, price response, or capacity constraints. Its value is that the
+stock-flow identities, anchors, and sensitivity levers are visible and tested.
 
 # What this project does not claim
 
@@ -222,6 +267,7 @@ fleet-turnover simulation.
 - It does not treat the 2026 partial-year pulse as a completed year.
 - It does not hide the 2025 charging methodology break.
 - It does not average conflicting NBS and CAAM production totals.
+- It does not present the fleet-turnover sensitivities as registration forecasts.
 
 # Reproducibility
 

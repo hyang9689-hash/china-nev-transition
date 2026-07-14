@@ -51,3 +51,16 @@ checksums, and independently double-check every pre-2021 chart transcription.
 - Labelled sales minus exports as a non-export residual proxy. It cross-checks
   the reported 2025 domestic share but is not presented as a retail measure.
 - Archived evidence notes and regenerated SHA-256 checksums before analysis.
+
+## 2026-07-14 - Fleet-turnover model
+
+- Anchored the model to end-2025 registered stock and the 2025 non-export
+  residual inflow proxy; future rows are explicitly labelled as scenarios.
+- Held annual domestic inflow constant and varied total fleet turnover from
+  5.5% to 7.0% to expose sensitivity rather than imply false precision.
+- Used a 0.25 relative NEV retirement-allocation weight because the current NEV
+  stock is younger than the non-NEV stock.
+- Added component and total stock-flow accounting tests for all 30 scenario
+  rows.
+- Fitted a log-odds trend only through 2022 and recorded a 5.34 percentage-point
+  MAE on 2023-2025; all held-out predictions were below the observations.

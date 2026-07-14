@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class DataSchemaTests(unittest.TestCase):
     def test_all_declared_datasets_and_cross_file_rules_pass(self) -> None:
         tables = validate_project_data(ROOT)
-        self.assertEqual(len(tables), 8)
+        self.assertEqual(len(tables), 11)
         self.assertEqual(
             len(tables["data/manual/pre2021_double_entry.csv"]), 12
         )

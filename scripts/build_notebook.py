@@ -195,18 +195,92 @@ cells = [
     ),
     markdown(
         """
-        ## 4. Limits and next checks
+        ## 4. Powertrain composition and exports
 
-        - The pre-2021 annual series was manually transcribed from CAAM charts
-          and will receive an independent second-entry audit.
-        - NEA changed its charging statistical scope in 2025. The 2024 and 2025
-          level bars are shown with a visible break; the project uses NEA's
-          reported 49.7% YoY rate rather than calculating a misleading rate
-          from incompatible endpoints.
-        - Sales, production, exports, registrations, and fleet stock are not
-          interchangeable.
-        - The 2030 paths are transparent sensitivity scenarios. They are not
-          probabilities and do not identify causes.
+        Reported powertrain components are reconciled to annual NEV totals
+        within published rounding. Exports are enterprise-reported industry
+        volumes; sales minus exports is labelled as a residual proxy rather
+        than as a separately observed domestic-retail series.
+        """
+    ),
+    code(
+        """
+        powertrain = pd.read_csv(DATA / "powertrain_mix_metrics.csv")
+        exports = pd.read_csv(DATA / "export_metrics.csv")
+
+        display(
+            powertrain.loc[
+                powertrain.year.isin([2020, 2024]),
+                [
+                    "year",
+                    "bev_sales_m",
+                    "phev_sales_m",
+                    "bev_share_of_nev_pct",
+                    "phev_share_of_nev_pct",
+                    "component_reconciliation_gap_m",
+                ],
+            ].round(2)
+        )
+        display(
+            exports[
+                [
+                    "year",
+                    "total_auto_exports_m",
+                    "nev_exports_m",
+                    "nev_share_of_exports_pct",
+                    "non_export_nev_share_proxy_pct",
+                ]
+            ].round(2)
+        )
+        display(Image(filename=str(ROOT / "figures" / "powertrain_exports.png"), width=1100))
+        """
+    ),
+    markdown(
+        """
+        ## 5. Fleet-turnover sensitivities and held-out check
+
+        The stock-flow model starts from end-2025 registered stock, holds the
+        domestic-inflow proxy constant, and makes every turnover rate and
+        retirement-allocation weight explicit. The model output is a
+        sensitivity calculation, not a registration forecast.
+        """
+    ),
+    code(
+        """
+        fleet_model = pd.read_csv(DATA / "fleet_turnover_scenarios.csv")
+        backtest = pd.read_csv(DATA / "sales_share_backtest_2023_2025.csv")
+
+        endpoints = fleet_model.loc[
+            fleet_model.year.isin([2030, 2035]),
+            [
+                "scenario",
+                "year",
+                "nev_inflow_share_pct",
+                "nev_fleet_share_pct",
+                "nev_stock_m",
+                "total_auto_stock_m",
+            ],
+        ].copy()
+        display(endpoints.round(1))
+        display(backtest.round(2))
+        print(f"Held-out 2023-2025 MAE: {backtest.absolute_error_pp.mean():.2f} percentage points")
+        display(Image(filename=str(ROOT / "figures" / "fleet_turnover_scenarios.png"), width=1100))
+        """
+    ),
+    markdown(
+        """
+        ## 6. Limits and audit status
+
+        - The independent second-entry audit passed all 12 pre-2021 values.
+        - Archived evidence notes are pinned by SHA-256 checksums.
+        - NEA changed its charging statistical scope in 2025; incompatible
+          endpoints are not used to calculate a spurious growth rate.
+        - The powertrain composition series stops at 2024 because a consistent
+          independently verifiable 2025 split was not established.
+        - Sales, exports, registrations, fleet stock, and scenario output remain
+          separate statistical concepts.
+        - The sales-share paths and fleet outputs are transparent sensitivities;
+          they are not probabilities, causal estimates, or registration forecasts.
         """
     ),
 ]
@@ -219,7 +293,7 @@ notebook = nbf.v4.new_notebook(
             "language": "python",
             "name": "python3",
         },
-        "language_info": {"name": "python", "version": "3.11+"},
+        "language_info": {"name": "python", "version": "3.12"},
     },
 )
 

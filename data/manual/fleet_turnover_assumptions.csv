@@ -1,0 +1,4 @@
+scenario,annual_logit_gain,total_turnover_rate_pct,nev_relative_retirement_weight,annual_domestic_inflow_growth_pct,description
+Conservative,0.15,5.5,0.25,0.0,Slower sales-share change and lower annual fleet turnover
+Baseline,0.25,6.0,0.25,0.0,Central sales-share path and annual fleet turnover
+Accelerated,0.35,7.0,0.25,0.0,Faster sales-share change and higher annual fleet turnover

@@ -37,6 +37,12 @@ construction caused adoption.
 - China had 20.092 million charging connectors at end-2025; 76.5% were private.
 - By May 2026, 22.497 million connectors equaled 80.3% of the official end-2027
   target of at least 28 million.
+- PHEV/range-extender share of NEV deliveries rose from 18.4% in 2020 to 40.0%
+  in 2024.
+- NEVs reached 36.8% of automobile exports in 2025; sales minus exports
+  independently reproduces the reported 50.8% domestic-share result as a proxy.
+- The fleet-turnover sensitivities place the 2035 NEV fleet share between 50.2%
+  and 63.3%; the bounded sales-share backtest has a 5.34 percentage-point MAE.
 
 These claims, their formulas, and their definition limits are documented in the
 report and notebook. The 2025 charging methodology break is marked rather than

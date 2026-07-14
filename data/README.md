@@ -24,6 +24,12 @@ CSV and keep reported values separate from derived indicators.
   separate from partial-year and single-month observations.
 - `processed/policy_targets.csv` records official future targets; targets are
   never treated as observations.
+- `manual/fleet_turnover_assumptions.csv` contains every adjustable fleet
+  scenario parameter.
+- `processed/fleet_turnover_scenarios.csv` is the generated 2026-2035
+  stock-flow model output.
+- `processed/sales_share_backtest_2023_2025.csv` records predictions and
+  absolute errors from a log-odds trend fitted only through 2022.
 
 ## Non-negotiable definition rules
 
@@ -47,6 +53,22 @@ CSV and keep reported values separate from derived indicators.
 7. **Exports are enterprise-reported volumes, not customs declarations.**
    Subtracting them from CAAM industry deliveries produces a useful non-export
    residual proxy, but not an independently observed domestic retail series.
+8. **Scenario output is not observed data.** Fleet-model anchors come from
+   observed tables, while every future flow, retirement, and stock is labelled
+   as a scenario calculation.
+
+## Fleet-model protocol
+
+The model starts from end-2025 registered stock and uses CAAM deliveries minus
+enterprise-reported exports as a domestic-inflow proxy. Total annual retirements
+equal the scenario turnover rate multiplied by opening fleet stock. Retirements
+are allocated between NEVs and non-NEVs by their weighted opening stocks; the
+NEV weight is lower because the NEV fleet is younger. Component stocks are then
+updated by opening stock plus inflow minus retirement.
+
+The generated table stores opening stocks, both inflows, both retirement flows,
+ending stocks, all assumptions, and an accounting residual. Tests require every
+component identity to hold within floating-point tolerance.
 
 ## Manual-entry protocol
 

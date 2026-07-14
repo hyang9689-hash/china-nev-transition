@@ -28,7 +28,10 @@ from src.market_extensions import (  # noqa: E402
     derive_export_metrics,
     derive_powertrain_mix,
 )
+from src.fleet_figures import build_fleet_turnover_figure  # noqa: E402
+from src.fleet_turnover import simulate_fleet_turnover  # noqa: E402
 from src.market_figures import build_market_extension_figure  # noqa: E402
+from src.scenario_validation import backtest_logit_trend  # noqa: E402
 from src.scenarios import scenario_table  # noqa: E402
 
 DATA = ROOT / "data" / "processed"
@@ -339,20 +342,52 @@ def main() -> None:
     annual = derive_annual(annual_raw)
     powertrain_raw = pd.read_csv(DATA / "nev_powertrain_sales_2020_2024.csv")
     exports_raw = pd.read_csv(DATA / "auto_exports_2021_2025.csv")
+    assumptions = pd.read_csv(
+        ROOT / "data" / "manual" / "fleet_turnover_assumptions.csv"
+    )
     powertrain = derive_powertrain_mix(powertrain_raw, annual)
     exports = derive_export_metrics(exports_raw, annual)
+    fleet_scenarios = simulate_fleet_turnover(fleet, exports, assumptions)
+    backtest = backtest_logit_trend(annual)
     powertrain.to_csv(
         DATA / "powertrain_mix_metrics.csv", index=False, float_format="%.4f"
     )
     exports.to_csv(DATA / "export_metrics.csv", index=False, float_format="%.4f")
+    fleet_scenarios.to_csv(
+        DATA / "fleet_turnover_scenarios.csv", index=False, float_format="%.4f"
+    )
+    backtest.to_csv(
+        DATA / "sales_share_backtest_2023_2025.csv",
+        index=False,
+        float_format="%.4f",
+    )
     metrics = derive_key_metrics(annual, fleet, pulse, targets)
     build_dashboard(annual, fleet, pulse, targets, metrics)
     build_scenario_figure(annual, pulse)
     build_market_extension_figure(
         powertrain, exports, FIGURES / "powertrain_exports.png"
     )
+    fleet_anchor = fleet.loc[fleet["period"] == "2025-12-31"].iloc[0]
+    flow_anchor = exports.loc[exports["year"] == 2025].iloc[0]
+    build_fleet_turnover_figure(
+        fleet_scenarios,
+        anchor_year=2025,
+        anchor_inflow_share_pct=(
+            flow_anchor["non_export_nev_sales_proxy_m"]
+            / flow_anchor["non_export_total_sales_proxy_m"]
+            * 100
+        ),
+        anchor_fleet_share_pct=(
+            fleet_anchor["nev_stock_m"] / fleet_anchor["auto_stock_m"] * 100
+        ),
+        output_path=FIGURES / "fleet_turnover_scenarios.png",
+    )
     print(f"Built {len(annual)} annual observations and {len(metrics)} key metrics.")
     print(f"Built {len(powertrain)} powertrain rows and {len(exports)} export rows.")
+    print(
+        f"Built {len(fleet_scenarios)} fleet-scenario rows; "
+        f"held-out sales-share MAE is {backtest['absolute_error_pp'].mean():.2f} pp."
+    )
     print(f"Figures written to {FIGURES}")
 
 
