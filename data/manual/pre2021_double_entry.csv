@@ -1,0 +1,13 @@
+year,metric,stored_value_m,independent_value_m,absolute_diff_m,tolerance_m,status,independent_source_id,verification_note
+2015,total_auto_sales_m,24.5980,24.5976,0.0004,0.0010,pass,audit2015auto,Stored value is the independently reported figure rounded to three decimals
+2015,nev_sales_m,0.3311,0.3311,0.0000,0.0001,pass,audit2015nev,Exact match to the more precise government-reported value
+2016,total_auto_sales_m,28.0280,28.0280,0.0000,0.0010,pass,audit2016auto,Exact match at published precision
+2016,nev_sales_m,0.5070,0.5070,0.0000,0.0010,pass,audit2016nev,Exact match at published precision
+2017,total_auto_sales_m,28.8790,28.8790,0.0000,0.0010,pass,audit2017miit,Exact match at published precision
+2017,nev_sales_m,0.7770,0.7770,0.0000,0.0010,pass,audit2017miit,Exact match at published precision
+2018,total_auto_sales_m,28.0810,28.0810,0.0000,0.0010,pass,audit2018mofcom,Exact match at published precision
+2018,nev_sales_m,1.2560,1.2560,0.0000,0.0010,pass,audit2018mofcom,Exact match at published precision
+2019,total_auto_sales_m,25.7690,25.7690,0.0000,0.0010,pass,audit2019samr,Exact match at published precision
+2019,nev_sales_m,1.2060,1.2060,0.0000,0.0010,pass,audit2019samr,Exact match at published precision
+2020,total_auto_sales_m,25.3110,25.3110,0.0000,0.0010,pass,audit2020caam,Exact match to the detailed CAAM annual table
+2020,nev_sales_m,1.3670,1.3670,0.0000,0.0010,pass,audit2020caam,Exact match to the detailed CAAM annual table

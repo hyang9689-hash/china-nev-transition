@@ -26,3 +26,14 @@ checksums, and independently double-check every pre-2021 chart transcription.
 - The repository contains separate commits for scaffold, source protocol, data,
   analysis, notebook, report, documentation, and CI.
 - No Git remote is configured; publication remains under the author's control.
+## 2026-07-14 ? Pre-2021 independent double entry
+
+- Re-entered the 2015?2020 automobile and NEV sales observations from eight
+  independent government or ministry publications rather than from the two
+  original CAAM historical charts.
+- All 12 observations passed their declared precision tolerances.
+- The only non-zero difference is the harmless rounding of 2015 automobile
+  sales from 24.5976 million to the stored 24.598 million.
+- The complete comparison is stored in `data/manual/pre2021_double_entry.csv`;
+  the verification URLs have distinct source IDs in the source register.
+
