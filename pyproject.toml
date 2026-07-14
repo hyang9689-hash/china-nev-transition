@@ -1,0 +1,18 @@
+[project]
+name = "china-nev-transition"
+version = "0.2.0"
+description = "Reproducible analysis of China's NEV sales, fleet, charging, powertrain mix, and exports."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "jupyter>=1.0,<2",
+  "matplotlib>=3.8,<4",
+  "nbclient>=0.10,<1",
+  "nbformat>=5.10,<6",
+  "numpy>=2.0,<3",
+  "pandas>=2.2,<3",
+]
+
+[tool.uv]
+package = false
+required-version = ">=0.11,<0.12"

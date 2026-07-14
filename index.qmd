@@ -271,14 +271,17 @@ stock-flow identities, anchors, and sensitivity levers are visible and tested.
 
 # Reproducibility
 
-From the repository root:
+From the repository root, Windows users can run `.scriptsebuild.ps1`. The
+equivalent cross-platform commands are:
 
 ```bash
-python -m pip install -r requirements.txt
-python scripts/build_analysis.py
-python scripts/build_notebook.py
-python -m unittest discover -s tests -v
+uv sync --frozen --python 3.12
+uv run --frozen python scripts/build_analysis.py
+uv run --frozen python scripts/build_notebook.py
+uv run --frozen python -m nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb --ExecutePreprocessor.timeout=120
+uv run --frozen python -m unittest discover -s tests -v
 quarto render
+uv run --frozen python scripts/validate_project.py
 ```
 
 The source register records publisher, title, date, retrieval date, URL,

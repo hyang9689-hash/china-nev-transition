@@ -77,22 +77,40 @@ china-nev-transition/
 
 ## Reproduce locally
 
-Python 3.12 is the reference version. Quarto is required only for the website.
+Python 3.12 and Quarto are the reference tools. The canonical Python
+environment is `pyproject.toml` plus `uv.lock`; `requirements.txt` remains
+as a compatibility list for tools that only support pip.
+
+On Windows, install uv and run:
 
 ```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python scripts/build_analysis.py
-python scripts/build_notebook.py
-python -m jupyter nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb
-python -m unittest discover -s tests -v
-quarto render
-python scripts/validate_project.py
+.scriptsootstrap.ps1
 ```
 
-On macOS or Linux, activate with `source .venv/bin/activate`.
+The bootstrap creates `.venv`, installs the exact locked packages, and verifies
+pandas, NumPy, Matplotlib, and the notebook libraries. No activation is needed.
+
+For a complete rebuild and verification:
+
+```powershell
+.scriptsebuild.ps1
+```
+
+The equivalent cross-platform sequence is:
+
+```bash
+uv sync --frozen --python 3.12
+uv run --frozen python scripts/build_analysis.py
+uv run --frozen python scripts/build_notebook.py
+uv run --frozen python -m nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb --ExecutePreprocessor.timeout=120
+uv run --frozen python -m unittest discover -s tests -v
+quarto render
+uv run --frozen python scripts/validate_project.py
+```
+
+Use `python -m nbconvert` inside the locked environment. On systems with another
+global Jupyter installation, `python -m jupyter nbconvert` can select the wrong
+kernel and miss project packages such as pandas.
 
 ## Data discipline
 
