@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "datasets": {
+    "data/manual/source_register.csv": {
+      "primary_key": ["source_id"],
+      "columns": {
+        "source_id": {"type": "string", "nullable": false, "unit": "identifier", "role": "primary_key", "pattern": "^[a-z0-9]+$", "description": "Stable source identifier used by data tables."},
+        "publisher": {"type": "string", "nullable": false, "unit": "text", "role": "provenance", "description": "Publishing institution or attributed mirror."},
+        "title": {"type": "string", "nullable": false, "unit": "text", "role": "provenance", "description": "Human-readable source title."},
+        "published_date": {"type": "date", "nullable": false, "unit": "ISO-8601 date", "role": "provenance", "description": "Date the source was published."},
+        "retrieved_date": {"type": "date", "nullable": false, "unit": "ISO-8601 date", "role": "provenance", "description": "Date the source was checked."},
+        "url": {"type": "string", "nullable": false, "unit": "URL", "role": "provenance", "pattern": "^https://.+$", "description": "Canonical HTTPS source location."},
+        "coverage": {"type": "string", "nullable": false, "unit": "text", "role": "provenance", "description": "Variables or period supported by the source."},
+        "definition_note": {"type": "string", "nullable": false, "unit": "text", "role": "provenance", "description": "Scope or definition caveat."}
+      }
+    },
+    "data/manual/pre2021_double_entry.csv": {
+      "primary_key": ["year", "metric"],
+      "columns": {
+        "year": {"type": "integer", "nullable": false, "unit": "year", "role": "dimension", "minimum": 2015, "maximum": 2020, "description": "Observation year independently checked."},
+        "metric": {"type": "string", "nullable": false, "unit": "identifier", "role": "dimension", "enum": ["total_auto_sales_m", "nev_sales_m"], "description": "Field checked against a second source."},
+        "stored_value_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "Value in the primary annual table."},
+        "independent_value_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "Value re-entered from an independent source."},
+        "absolute_diff_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "derived", "minimum": 0, "description": "Absolute difference between entries."},
+        "tolerance_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "assumption", "minimum": 0, "description": "Maximum difference allowed for published precision."},
+        "status": {"type": "string", "nullable": false, "unit": "category", "role": "validation", "enum": ["pass", "fail"], "description": "Audit result."},
+        "independent_source_id": {"type": "string", "nullable": false, "unit": "identifier", "role": "foreign_key", "foreign_key": "data/manual/source_register.csv:source_id", "description": "Source supporting the independent entry."},
+        "verification_note": {"type": "string", "nullable": false, "unit": "text", "role": "provenance", "description": "Explanation of precision or reconciliation."}
+      },
+      "row_rules": [{"left": "absolute_diff_m", "operator": "<=", "right": "tolerance_m"}]
+    },
+    "data/processed/china_auto_market_2015_2025.csv": {
+      "primary_key": ["year"],
+      "columns": {
+        "year": {"type": "integer", "nullable": false, "unit": "year", "role": "dimension", "minimum": 2015, "maximum": 2025, "description": "Calendar year."},
+        "total_auto_sales_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "CAAM total automobile industry deliveries including exports."},
+        "nev_sales_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "CAAM NEV industry deliveries including exports."},
+        "total_sales_source_id": {"type": "string", "nullable": false, "unit": "identifier", "role": "foreign_key", "foreign_key": "data/manual/source_register.csv:source_id", "description": "Source for total sales."},
+        "nev_sales_source_id": {"type": "string", "nullable": false, "unit": "identifier", "role": "foreign_key", "foreign_key": "data/manual/source_register.csv:source_id", "description": "Source for NEV sales."}
+      },
+      "row_rules": [{"left": "nev_sales_m", "operator": "<=", "right": "total_auto_sales_m"}],
+      "expected_integer_sequence": {"column": "year", "start": 2015, "end": 2025}
+    },
+    "data/processed/fleet_charging_snapshot.csv": {
+      "primary_key": ["period"],
+      "columns": {
+        "period": {"type": "date", "nullable": false, "unit": "ISO-8601 date", "role": "dimension", "description": "Snapshot date."},
+        "auto_stock_m": {"type": "number", "nullable": true, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "Registered civilian automobile stock."},
+        "nev_stock_m": {"type": "number", "nullable": true, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "Registered NEV stock."},
+        "charging_total_m": {"type": "number", "nullable": false, "unit": "million connectors", "role": "observation", "minimum": 0, "description": "Total charging connectors."},
+        "charging_public_m": {"type": "number", "nullable": true, "unit": "million connectors", "role": "observation", "minimum": 0, "description": "Public charging connectors."},
+        "charging_private_m": {"type": "number", "nullable": true, "unit": "million connectors", "role": "observation", "minimum": 0, "description": "Private charging connectors."},
+        "public_power_gw": {"type": "number", "nullable": true, "unit": "GW", "role": "observation", "minimum": 0, "description": "Rated public charging power."},
+        "avg_public_kw": {"type": "number", "nullable": true, "unit": "kW per connector", "role": "derived", "minimum": 0, "description": "Average rated public connector power."},
+        "charging_yoy_reported_pct": {"type": "number", "nullable": true, "unit": "percent", "role": "reported_indicator", "description": "Source-reported year-on-year charging growth."},
+        "fleet_source_id": {"type": "string", "nullable": true, "unit": "identifier", "role": "foreign_key", "foreign_key": "data/manual/source_register.csv:source_id", "description": "Source for fleet fields."},
+        "charging_source_id": {"type": "string", "nullable": false, "unit": "identifier", "role": "foreign_key", "foreign_key": "data/manual/source_register.csv:source_id", "description": "Source for charging fields."}
+      },
+      "row_rules": [{"left": "nev_stock_m", "operator": "<=", "right": "auto_stock_m", "skip_null": true}]
+    },
+    "data/processed/current_market_pulse.csv": {
+      "primary_key": ["period", "scope"],
+      "columns": {
+        "period": {"type": "string", "nullable": false, "unit": "period label", "role": "dimension", "description": "Full-year partial-year or monthly period."},
+        "period_type": {"type": "string", "nullable": false, "unit": "category", "role": "dimension", "enum": ["full_year", "partial_year", "single_month"], "description": "Completeness of the observation period."},
+        "total_auto_sales_m": {"type": "number", "nullable": true, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "Total CAAM sales for the period."},
+        "nev_sales_m": {"type": "number", "nullable": true, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "CAAM NEV sales for the period."},
+        "nev_share_reported_pct": {"type": "number", "nullable": false, "unit": "percent", "role": "reported_indicator", "minimum": 0, "maximum": 100, "description": "Reported NEV share for the stated scope."},
+        "scope": {"type": "string", "nullable": false, "unit": "category", "role": "dimension", "enum": ["total_CAAM_sales_including_exports", "domestic_new_vehicle_sales"], "description": "Denominator definition."},
+        "source_id": {"type": "string", "nullable": false, "unit": "identifier", "role": "foreign_key", "foreign_key": "data/manual/source_register.csv:source_id", "description": "Source for the observation."}
+      },
+      "row_rules": [{"left": "nev_sales_m", "operator": "<=", "right": "total_auto_sales_m", "skip_null": true}]
+    },
+    "data/processed/policy_targets.csv": {
+      "primary_key": ["target_date", "metric"],
+      "columns": {
+        "target_date": {"type": "date", "nullable": false, "unit": "ISO-8601 date", "role": "dimension", "description": "Deadline for the target."},
+        "metric": {"type": "string", "nullable": false, "unit": "identifier", "role": "dimension", "description": "Targeted quantity."},
+        "target_value": {"type": "number", "nullable": false, "unit": "see unit field", "role": "target", "minimum": 0, "description": "Official target value."},
+        "unit": {"type": "string", "nullable": false, "unit": "category", "role": "metadata", "enum": ["million", "GW"], "description": "Measurement unit."},
+        "comparison": {"type": "string", "nullable": false, "unit": "category", "role": "metadata", "enum": ["at_least", "more_than"], "description": "How the target threshold should be interpreted."},
+        "source_id": {"type": "string", "nullable": false, "unit": "identifier", "role": "foreign_key", "foreign_key": "data/manual/source_register.csv:source_id", "description": "Source for the target."}
+      }
+    }
+  }
+}

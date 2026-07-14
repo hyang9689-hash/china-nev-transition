@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import sys
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -13,6 +14,9 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 DOCS = ROOT / "docs"
+sys.path.insert(0, str(ROOT))
+
+from src.data_validation import validate_project_data  # noqa: E402
 
 
 class AssetParser(HTMLParser):
@@ -38,9 +42,16 @@ def check_required_files() -> None:
         "figures/first_look_dashboard.png",
         "docs/index.html",
         "docs/notebooks/01_exploration.html",
+        "data/schema/datasets.json",
+        "data/manual/pre2021_double_entry.csv",
+        "data/raw/manifest.csv",
     ]
     missing = [item for item in required if not (ROOT / item).is_file()]
     assert not missing, f"Missing required files: {missing}"
+
+
+def check_data_contract() -> None:
+    validate_project_data(ROOT)
 
 
 def check_source_ids() -> None:
@@ -110,6 +121,7 @@ def check_rendered_links() -> None:
 def main() -> None:
     checks = [
         check_required_files,
+        check_data_contract,
         check_source_ids,
         check_annual_series,
         check_notebook,

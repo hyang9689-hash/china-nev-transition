@@ -5,6 +5,7 @@ CSV and keep reported values separate from derived indicators.
 
 ## Files
 
+- `schema/datasets.json` is the executable field dictionary and data contract.
 - `manual/source_register.csv` is the audit trail: publisher, title, date,
   URL, coverage, and definition warnings.
 - `processed/china_auto_market_2015_2025.csv` contains annual CAAM automobile
