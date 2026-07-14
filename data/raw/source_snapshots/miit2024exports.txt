@@ -1,0 +1,11 @@
+source_id: miit2024exports
+publisher: Ministry of Industry and Information Technology
+title: 2023 industrial economy press conference
+url: https://www.miit.gov.cn/jgsj/bgt/gzdt/art/2024/art_a462e905f5634daa937efa4b2f0985e3.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed year: 2023
+Total automobile exports million: 4.910
+NEV exports million: 1.203
+Scope note: enterprise exports rather than customs declarations.

@@ -1,0 +1,12 @@
+source_id: miit2021composition
+publisher: Ministry of Industry and Information Technology
+title: December 2020 automobile industry economic operation
+url: https://wap.miit.gov.cn/gxsj/tjfx/zbgy/qc/art/2021/art_80a68716879e4180a0dea39183b546cf.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed year: 2020
+NEV sales million: 1.367
+BEV sales million: 1.115
+PHEV sales million: 0.251
+FCEV sales million: 0.001

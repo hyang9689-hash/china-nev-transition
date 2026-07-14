@@ -1,0 +1,12 @@
+source_id: nbs2024industry
+publisher: National Bureau of Statistics enterprise survey service
+title: 2024 automobile industry economic operation report
+url: https://filedownload-ytb.stats.gov.cn/attachment/16-2024%E5%B9%B4%E6%B1%BD%E8%BD%A6%E5%B7%A5%E4%B8%9A%E7%BB%8F%E6%B5%8E%E8%BF%90%E8%A1%8C%E6%8A%A5%E5%91%8A.pdf
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed year: 2024
+NEV sales million: 12.866
+BEV sales million: 7.719
+PHEV sales million: 5.141
+FCEV sales million: 0.005

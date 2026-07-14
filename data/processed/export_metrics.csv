@@ -1,0 +1,6 @@
+year,total_auto_exports_m,nev_exports_m,source_id,total_auto_sales_m,nev_sales_m,total_exports_share_of_sales_pct,nev_share_of_exports_pct,nev_exports_share_of_nev_sales_pct,non_export_total_sales_proxy_m,non_export_nev_sales_proxy_m,non_export_nev_share_proxy_pct
+2021,2.0150,0.3100,miit2022exports,26.2750,3.5210,7.6689,15.3846,8.8043,24.2600,3.2110,13.2358
+2022,3.1110,0.6790,miit2023exports,26.8640,6.8870,11.5806,21.8258,9.8592,23.7530,6.2080,26.1356
+2023,4.9100,1.2030,miit2024exports,30.0940,9.4950,16.3155,24.5010,12.6698,25.1840,8.2920,32.9257
+2024,5.8590,1.2840,miit2025exports,31.4360,12.8660,18.6379,21.9150,9.9798,25.5770,11.5820,45.2829
+2025,7.0980,2.6150,caam2026exports,34.4000,16.4900,20.6337,36.8414,15.8581,27.3020,13.8750,50.8205

@@ -1,0 +1,11 @@
+source_id: caam2026exports
+publisher: China Association of Automobile Manufacturers
+title: December 2025 automobile export briefing
+url: https://www.caam.org.cn/chn/4/cate_34/con_5237010.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed year: 2025
+Total automobile exports million: 7.098
+NEV exports million: 2.615
+Scope note: enterprise exports rather than customs declarations.

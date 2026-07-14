@@ -1,0 +1,6 @@
+year,nev_sales_m,bev_sales_m,phev_sales_m,fcev_sales_m,source_id,component_total_m,component_reconciliation_gap_m,annual_nev_sales_m,annual_reconciliation_gap_m,bev_share_of_nev_pct,phev_share_of_nev_pct,fcev_share_of_nev_pct
+2020,1.3670,1.1150,0.2510,0.0010,miit2021composition,1.3670,0.0000,1.3670,0.0000,81.5655,18.3614,0.0732
+2021,3.5210,2.9160,0.6030,0.0020,caam2022nevsales,3.5210,0.0000,3.5210,0.0000,82.8174,17.1258,0.0568
+2022,6.8870,5.3650,1.5180,0.0030,caam2023nevsales,6.8860,-0.0010,6.8870,0.0000,77.9004,22.0415,0.0436
+2023,9.4950,6.6850,2.8040,0.0060,caam2024nevsales,9.4950,0.0000,9.4950,0.0000,70.4055,29.5313,0.0632
+2024,12.8660,7.7190,5.1410,0.0050,nbs2024industry,12.8650,-0.0010,12.8660,0.0000,59.9953,39.9580,0.0389

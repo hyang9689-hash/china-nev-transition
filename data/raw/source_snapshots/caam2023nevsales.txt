@@ -1,0 +1,12 @@
+source_id: caam2023nevsales
+publisher: China Association of Automobile Manufacturers
+title: Sales of New Energy Vehicles in December 2022
+url: https://en.caam.org.cn/Index/show/catid/60/id/1902.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed year: 2022
+NEV sales million: 6.887
+BEV sales million: 5.365
+PHEV sales million: 1.518
+FCEV sales million: 0.003

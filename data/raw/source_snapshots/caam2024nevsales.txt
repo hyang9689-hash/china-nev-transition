@@ -1,0 +1,12 @@
+source_id: caam2024nevsales
+publisher: China Association of Automobile Manufacturers
+title: Sales of New Energy Vehicles in December 2023
+url: https://en.caam.org.cn/Index/show/catid/66/id/2039.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed year: 2023
+NEV sales million: 9.495
+BEV sales million: 6.685
+PHEV sales million: 2.804
+FCEV sales million: 0.006

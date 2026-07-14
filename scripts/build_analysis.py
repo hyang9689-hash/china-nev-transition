@@ -24,6 +24,11 @@ from src.metrics import (  # noqa: E402
     ratio,
     share,
 )
+from src.market_extensions import (  # noqa: E402
+    derive_export_metrics,
+    derive_powertrain_mix,
+)
+from src.market_figures import build_market_extension_figure  # noqa: E402
 from src.scenarios import scenario_table  # noqa: E402
 
 DATA = ROOT / "data" / "processed"
@@ -332,10 +337,22 @@ def build_scenario_figure(annual: pd.DataFrame, pulse: pd.DataFrame) -> pd.DataF
 def main() -> None:
     annual_raw, fleet, pulse, targets = load_inputs()
     annual = derive_annual(annual_raw)
+    powertrain_raw = pd.read_csv(DATA / "nev_powertrain_sales_2020_2024.csv")
+    exports_raw = pd.read_csv(DATA / "auto_exports_2021_2025.csv")
+    powertrain = derive_powertrain_mix(powertrain_raw, annual)
+    exports = derive_export_metrics(exports_raw, annual)
+    powertrain.to_csv(
+        DATA / "powertrain_mix_metrics.csv", index=False, float_format="%.4f"
+    )
+    exports.to_csv(DATA / "export_metrics.csv", index=False, float_format="%.4f")
     metrics = derive_key_metrics(annual, fleet, pulse, targets)
     build_dashboard(annual, fleet, pulse, targets, metrics)
     build_scenario_figure(annual, pulse)
+    build_market_extension_figure(
+        powertrain, exports, FIGURES / "powertrain_exports.png"
+    )
     print(f"Built {len(annual)} annual observations and {len(metrics)} key metrics.")
+    print(f"Built {len(powertrain)} powertrain rows and {len(exports)} export rows.")
     print(f"Figures written to {FIGURES}")
 
 

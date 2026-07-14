@@ -61,6 +61,8 @@ Three subquestions make this answerable:
    stock, and what does it mean?
 3. How quickly is charging capacity expanding, and how close is the connector
    stock to the official 2027 target?
+4. How are powertrain composition and exports changing the shape and geographic
+   destination of NEV industry deliveries?
 
 # Evidence at a glance
 
@@ -167,6 +169,34 @@ In the first half of 2026, CAAM reported **7.446 million NEV sales**. The H1 NEV
 share of total CAAM sales was 49.6%, while the single-month June share reached
 58.5% [@gov2026h1; @miit2026june]. Those numbers are current context, not an
 extra point on the 2015–2025 annual series.
+
+## 5. PHEVs changed the mix while exports changed the destination
+
+![Stacked annual BEV, PHEV/range-extender, and fuel-cell deliveries for 2020-2024 alongside total automobile and NEV exports for 2021-2025.](figures/powertrain_exports.png){#fig-powertrain-exports fig-alt="Two-panel chart. The first shows BEV deliveries rising from 1.115 million in 2020 to 7.719 million in 2024 while PHEV deliveries rise from 0.251 million to 5.141 million. The second shows total automobile exports rising from 2.015 million in 2021 to 7.098 million in 2025 and NEV exports from 0.310 million to 2.615 million." width="100%"}
+
+The market did not expand with a fixed powertrain mix. Between 2020 and 2024,
+reported BEV deliveries rose from **1.115 million to 7.719 million**, while
+PHEV/range-extender deliveries rose from **0.251 million to 5.141 million**.
+The PHEV share of reported NEV deliveries consequently increased from **18.4%**
+to **40.0%** [@miit2021composition; @caam2022nevsales; @caam2023nevsales;
+@caam2024nevsales; @nbs2024industry]. Component sums reconcile to reported
+annual NEV totals within 0.001 million; the small differences reflect published
+rounding.
+
+Exports also became material to interpretation of the industry-delivery series.
+Total automobile exports increased from **2.015 million in 2021** to **7.098
+million in 2025**, while NEV exports rose from **0.310 million to 2.615
+million**. NEVs therefore grew from **15.4% to 36.8% of automobile exports**, and
+total exports rose from **7.7% to 20.6% of CAAM industry deliveries**
+[@miit2022exports; @miit2023exports; @miit2024exports; @miit2025exports;
+@caam2026exports].
+
+Subtracting enterprise-reported exports from industry deliveries gives a 2025
+non-export residual NEV share of **50.8%**, which closely matches the separately
+reported domestic new-vehicle share. This is a useful cross-check, not a
+replacement for the official domestic series: enterprise export reporting,
+industry deliveries, domestic retail sales, and customs declarations are
+different statistical systems.
 
 # Scenarios to 2030
 

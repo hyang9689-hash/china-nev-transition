@@ -81,6 +81,29 @@
         "comparison": {"type": "string", "nullable": false, "unit": "category", "role": "metadata", "enum": ["at_least", "more_than"], "description": "How the target threshold should be interpreted."},
         "source_id": {"type": "string", "nullable": false, "unit": "identifier", "role": "foreign_key", "foreign_key": "data/manual/source_register.csv:source_id", "description": "Source for the target."}
       }
+    },
+    "data/processed/nev_powertrain_sales_2020_2024.csv": {
+      "primary_key": ["year"],
+      "columns": {
+        "year": {"type": "integer", "nullable": false, "unit": "year", "role": "dimension", "minimum": 2020, "maximum": 2024, "description": "Calendar year."},
+        "nev_sales_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "reported_total", "minimum": 0, "description": "Reported total NEV industry deliveries used as the component denominator."},
+        "bev_sales_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "Battery-electric vehicle industry deliveries."},
+        "phev_sales_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "Plug-in hybrid vehicle industry deliveries including range-extender vehicles where classified by the source."},
+        "fcev_sales_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "Fuel-cell electric vehicle industry deliveries."},
+        "source_id": {"type": "string", "nullable": false, "unit": "identifier", "role": "foreign_key", "foreign_key": "data/manual/source_register.csv:source_id", "description": "Source supporting the annual powertrain components."}
+      },
+      "expected_integer_sequence": {"column": "year", "start": 2020, "end": 2024}
+    },
+    "data/processed/auto_exports_2021_2025.csv": {
+      "primary_key": ["year"],
+      "columns": {
+        "year": {"type": "integer", "nullable": false, "unit": "year", "role": "dimension", "minimum": 2021, "maximum": 2025, "description": "Calendar year."},
+        "total_auto_exports_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "Reported automobile exports."},
+        "nev_exports_m": {"type": "number", "nullable": false, "unit": "million vehicles", "role": "observation", "minimum": 0, "description": "Reported new-energy vehicle exports."},
+        "source_id": {"type": "string", "nullable": false, "unit": "identifier", "role": "foreign_key", "foreign_key": "data/manual/source_register.csv:source_id", "description": "Source supporting the annual export values."}
+      },
+      "row_rules": [{"left": "nev_exports_m", "operator": "<=", "right": "total_auto_exports_m"}],
+      "expected_integer_sequence": {"column": "year", "start": 2021, "end": 2025}
     }
   }
 }
