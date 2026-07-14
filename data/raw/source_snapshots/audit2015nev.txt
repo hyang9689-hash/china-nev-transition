@@ -1,0 +1,12 @@
+source_id: audit2015nev
+publisher: National Energy Administration / Economic Daily
+title: NEVs drive industry transition
+url: https://www.nea.gov.cn/2016-07/12/c_135507234.htm
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed field: nev_sales_m
+Observed value: 0.3311
+Published unit: 10000 vehicles
+Published value: 33.11
+Scope note: CAAM NEV industry deliveries for calendar year 2015.

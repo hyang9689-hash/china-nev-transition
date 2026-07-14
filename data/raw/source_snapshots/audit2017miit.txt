@@ -1,0 +1,14 @@
+source_id: audit2017miit
+publisher: Ministry of Industry and Information Technology
+title: 2017 automobile industry economic operation
+url: https://wap.miit.gov.cn/jgsj/zbys/gzdt/art/2020/art_ed3cef0edd0848b1a2dcbc2ecae9b6e7.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed field: total_auto_sales_m
+Observed value: 28.879
+Observed field: nev_sales_m
+Observed value: 0.777
+Published unit: 10000 vehicles
+Published values: 2887.9 and 77.7
+Scope note: CAAM industry deliveries for calendar year 2017.

@@ -44,3 +44,7 @@ unit, converted to millions only when necessary, and assigned a source ID.
 Derived values (shares, growth rates, CAGR, ratios, and gaps) are calculated in
 code rather than typed into the source tables.
 
+- `manual/pre2021_double_entry.csv` records the independent second entry for
+  every 2015-2020 automobile and NEV sales observation.
+- `raw/source_snapshots/` contains redistribution-safe evidence records;
+  `raw/manifest.csv` pins every snapshot with a SHA-256 checksum.

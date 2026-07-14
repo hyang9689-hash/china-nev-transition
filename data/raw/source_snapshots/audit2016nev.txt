@@ -1,0 +1,12 @@
+source_id: audit2016nev
+publisher: National Energy Administration / Economic Daily
+title: NEVs enter an important transition period
+url: https://www.nea.gov.cn/2017-04/12/c_136202749.htm
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed field: nev_sales_m
+Observed value: 0.507
+Published unit: 10000 vehicles
+Published value: 50.7
+Scope note: CAAM NEV industry deliveries for calendar year 2016.

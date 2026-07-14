@@ -1,0 +1,14 @@
+source_id: audit2020caam
+publisher: China Association of Automobile Manufacturers / Ministry of Commerce
+title: China's auto market sees strong recovery in 2020
+url: https://en.caam.org.cn/Index/show/catid/2/id/1686.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed field: total_auto_sales_m
+Observed value: 25.311
+Observed field: nev_sales_m
+Observed value: 1.367
+Published unit: 10000 vehicles
+Published values: 2531.1 and 136.7
+Scope note: CAAM industry deliveries for calendar year 2020.

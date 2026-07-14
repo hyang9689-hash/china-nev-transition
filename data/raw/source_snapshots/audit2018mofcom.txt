@@ -1,0 +1,14 @@
+source_id: audit2018mofcom
+publisher: Ministry of Commerce / China News Service
+title: China remains the world's largest auto market in 2018
+url: https://tradeinservices.mofcom.gov.cn/article/lingyu/lyqita/201901/76174.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed field: total_auto_sales_m
+Observed value: 28.081
+Observed field: nev_sales_m
+Observed value: 1.256
+Published unit: 10000 vehicles
+Published values: 2808.1 and 125.6
+Scope note: CAAM industry deliveries for calendar year 2018.

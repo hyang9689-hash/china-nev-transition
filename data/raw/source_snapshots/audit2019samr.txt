@@ -1,0 +1,14 @@
+source_id: audit2019samr
+publisher: State Administration for Market Regulation / Chengjiang Government
+title: National automobile and consumer-product recalls in 2019
+url: https://www.yncj.gov.cn/cjxzfxxgk/zhxx2209/20200406/1178542.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed field: total_auto_sales_m
+Observed value: 25.769
+Observed field: nev_sales_m
+Observed value: 1.206
+Published unit: 10000 vehicles
+Published values: 2576.9 and 120.6
+Scope note: CAAM industry deliveries for calendar year 2019.

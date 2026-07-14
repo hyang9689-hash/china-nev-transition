@@ -1,0 +1,9 @@
+source_id,relative_path,sha256,bytes,capture_type,retrieved_date,url
+audit2015auto,data/raw/source_snapshots/audit2015auto.txt,e6b77ea62df62420d0e62d0475509796289d34bcda447fd8635d2f210d7956f1,465,curated_text_evidence,2026-07-14,https://gxt.hunan.gov.cn/sjfb_80675/201602/t20160203_2919580.html
+audit2015nev,data/raw/source_snapshots/audit2015nev.txt,e50df80334a5044f437cc99e57802731fe6ab7c245421c8d3cc2d3a628baab17,410,curated_text_evidence,2026-07-14,https://www.nea.gov.cn/2016-07/12/c_135507234.htm
+audit2016auto,data/raw/source_snapshots/audit2016auto.txt,5f86ca3a1a53aae111437ec544b2d6d150b714fdb15cf77261610df8df5d2f05,460,curated_text_evidence,2026-07-14,https://www.ndrc.gov.cn/fgsj/tjsj/cyfz/zzyfz/201702/t20170207_1149876.html
+audit2016nev,data/raw/source_snapshots/audit2016nev.txt,4386314951bcd2d26d48c0a0a81459890b0cf3120a7fd1fc1cd03a532f7f6259,419,curated_text_evidence,2026-07-14,https://www.nea.gov.cn/2017-04/12/c_136202749.htm
+audit2017miit,data/raw/source_snapshots/audit2017miit.txt,721401600c7a1e781fb8f25ca6be586a2537ee58df12a9987ddfd39fb4f18d8a,528,curated_text_evidence,2026-07-14,https://wap.miit.gov.cn/jgsj/zbys/gzdt/art/2020/art_ed3cef0edd0848b1a2dcbc2ecae9b6e7.html
+audit2018mofcom,data/raw/source_snapshots/audit2018mofcom.txt,3753a7383325c639dba1b3d64d3d91f093832e7a913e889a619bffbab82142f8,523,curated_text_evidence,2026-07-14,https://tradeinservices.mofcom.gov.cn/article/lingyu/lyqita/201901/76174.html
+audit2019samr,data/raw/source_snapshots/audit2019samr.txt,704fce294f0b1a14137cda4a87910efd5ec02c288c1c7ccf768953c4aeee8c9e,536,curated_text_evidence,2026-07-14,https://www.yncj.gov.cn/cjxzfxxgk/zhxx2209/20200406/1178542.html
+audit2020caam,data/raw/source_snapshots/audit2020caam.txt,4b3adecd478e3d8568f6fd28930069e437a86e7defa51a412b8864b76bb3505e,521,curated_text_evidence,2026-07-14,https://en.caam.org.cn/Index/show/catid/2/id/1686.html

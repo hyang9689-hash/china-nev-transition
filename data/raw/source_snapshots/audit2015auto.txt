@@ -1,0 +1,12 @@
+source_id: audit2015auto
+publisher: Hunan Provincial Department of Industry and Information Technology
+title: 2015 automobile industry economic operation
+url: https://gxt.hunan.gov.cn/sjfb_80675/201602/t20160203_2919580.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed field: total_auto_sales_m
+Observed value: 24.5976
+Published unit: 10000 vehicles
+Published value: 2459.76
+Scope note: CAAM industry deliveries for calendar year 2015.

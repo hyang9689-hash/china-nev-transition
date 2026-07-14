@@ -1,0 +1,12 @@
+source_id: audit2016auto
+publisher: National Development and Reform Commission
+title: 2016 automobile production and sales reach record highs
+url: https://www.ndrc.gov.cn/fgsj/tjsj/cyfz/zzyfz/201702/t20170207_1149876.html
+retrieved_date: 2026-07-14
+capture_type: curated_text_evidence
+
+Observed field: total_auto_sales_m
+Observed value: 28.028
+Published unit: 10000 vehicles
+Published value: 2802.8
+Scope note: CAAM industry deliveries for calendar year 2016.
