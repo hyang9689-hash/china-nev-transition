@@ -171,7 +171,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/YOUR-GITHUB-USERNAME/china-nev-transition"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/andylalala/china-nev-transition"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -194,7 +194,9 @@ window.Quarto = {
   <li><a href="#basic-mathematics" id="toc-basic-mathematics" class="nav-link active" data-scroll-target="#basic-mathematics">1. Basic mathematics</a></li>
   <li><a href="#the-first-results" id="toc-the-first-results" class="nav-link" data-scroll-target="#the-first-results">2. The first results</a></li>
   <li><a href="#a-bounded-scenario-not-a-confident-forecast" id="toc-a-bounded-scenario-not-a-confident-forecast" class="nav-link" data-scroll-target="#a-bounded-scenario-not-a-confident-forecast">3. A bounded scenario, not a confident forecast</a></li>
-  <li><a href="#limits-and-next-checks" id="toc-limits-and-next-checks" class="nav-link" data-scroll-target="#limits-and-next-checks">4. Limits and next checks</a></li>
+  <li><a href="#powertrain-composition-and-exports" id="toc-powertrain-composition-and-exports" class="nav-link" data-scroll-target="#powertrain-composition-and-exports">4. Powertrain composition and exports</a></li>
+  <li><a href="#fleet-turnover-sensitivities-and-held-out-check" id="toc-fleet-turnover-sensitivities-and-held-out-check" class="nav-link" data-scroll-target="#fleet-turnover-sensitivities-and-held-out-check">5. Fleet-turnover sensitivities and held-out check</a></li>
+  <li><a href="#limits-and-audit-status" id="toc-limits-and-audit-status" class="nav-link" data-scroll-target="#limits-and-audit-status">6. Limits and audit status</a></li>
   </ul>
 </nav>
     </div>
@@ -220,10 +222,10 @@ window.Quarto = {
 </header>
 
 
-<p><strong>Exploration notebook · China NEV transition · data vintage 2026-07-12</strong></p>
+<p><strong>Exploration notebook · China NEV transition · data vintage 2026-07-14</strong></p>
 <p>Central question: <em>How quickly is China’s dominance of new-energy vehicles in new-vehicle sales translating into the on-road fleet, and has charging infrastructure kept pace?</em></p>
 <p>The notebook keeps annual observations, partial-year observations, registered fleet stock, and charging connectors in separate tables.</p>
-<div id="b136ff41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-12T09:43:57.311979Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-12T09:43:57.311822Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-12T09:43:58.305758Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-12T09:43:58.304321Z&quot;}}" data-execution_count="1">
+<div id="b2e303a4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:15:17.384562Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:15:17.384562Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:15:17.850796Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:15:17.850269Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -256,7 +258,7 @@ window.Quarto = {
 <p><span class="math display">\[\text{YoY growth}_t = \left(\frac{x_t}{x_{t-1}} - 1\right) \times 100\]</span></p>
 <p><span class="math display">\[\text{CAGR} = \left(\frac{x_{end}}{x_{start}}\right)^{1/n} - 1\]</span></p>
 <p>A growth contribution above 100% is possible: it means the growing component more than explains total net growth while another component contracted.</p>
-<div id="35676d71" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-12T09:43:58.307669Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-12T09:43:58.307488Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-12T09:43:58.903102Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-12T09:43:58.902392Z&quot;}}" data-execution_count="2">
+<div id="dfbb1114" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:15:17.853264Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:15:17.853264Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:15:18.311550Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:15:18.311550Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>annual <span class="op">=</span> annual.assign(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    nev_share_total_sales_pct<span class="op">=</span><span class="kw">lambda</span> x: <span class="dv">100</span> <span class="op">*</span> x.nev_sales_m <span class="op">/</span> x.total_auto_sales_m,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    nev_sales_yoy_pct<span class="op">=</span><span class="kw">lambda</span> x: x.nev_sales_m.pct_change() <span class="op">*</span> <span class="dv">100</span>,</span>
@@ -277,105 +279,105 @@ window.Quarto = {
 <style type="text/css">
 </style>
 
-<table id="T_68d06" class="caption-top table table-sm table-striped small">
+<table id="T_48562" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_68d06_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">year</th>
-<th id="T_68d06_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">total_auto_sales_m</th>
-<th id="T_68d06_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">nev_sales_m</th>
-<th id="T_68d06_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">nev_share_total_sales_pct</th>
-<th id="T_68d06_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">nev_sales_yoy_pct</th>
+<th id="T_48562_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">year</th>
+<th id="T_48562_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">total_auto_sales_m</th>
+<th id="T_48562_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">nev_sales_m</th>
+<th id="T_48562_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">nev_share_total_sales_pct</th>
+<th id="T_48562_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">nev_sales_yoy_pct</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th id="T_68d06_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</th>
-<td id="T_68d06_row0_col0" class="data row0 col0">2015</td>
-<td id="T_68d06_row0_col1" class="data row0 col1">24.60</td>
-<td id="T_68d06_row0_col2" class="data row0 col2">0.33</td>
-<td id="T_68d06_row0_col3" class="data row0 col3">1.4%</td>
-<td id="T_68d06_row0_col4" class="data row0 col4">nan%</td>
+<th id="T_48562_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</th>
+<td id="T_48562_row0_col0" class="data row0 col0">2015</td>
+<td id="T_48562_row0_col1" class="data row0 col1">24.60</td>
+<td id="T_48562_row0_col2" class="data row0 col2">0.33</td>
+<td id="T_48562_row0_col3" class="data row0 col3">1.4%</td>
+<td id="T_48562_row0_col4" class="data row0 col4">nan%</td>
 </tr>
 <tr class="even">
-<th id="T_68d06_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</th>
-<td id="T_68d06_row1_col0" class="data row1 col0">2016</td>
-<td id="T_68d06_row1_col1" class="data row1 col1">28.03</td>
-<td id="T_68d06_row1_col2" class="data row1 col2">0.51</td>
-<td id="T_68d06_row1_col3" class="data row1 col3">1.8%</td>
-<td id="T_68d06_row1_col4" class="data row1 col4">53.1%</td>
+<th id="T_48562_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</th>
+<td id="T_48562_row1_col0" class="data row1 col0">2016</td>
+<td id="T_48562_row1_col1" class="data row1 col1">28.03</td>
+<td id="T_48562_row1_col2" class="data row1 col2">0.51</td>
+<td id="T_48562_row1_col3" class="data row1 col3">1.8%</td>
+<td id="T_48562_row1_col4" class="data row1 col4">53.1%</td>
 </tr>
 <tr class="odd">
-<th id="T_68d06_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</th>
-<td id="T_68d06_row2_col0" class="data row2 col0">2017</td>
-<td id="T_68d06_row2_col1" class="data row2 col1">28.88</td>
-<td id="T_68d06_row2_col2" class="data row2 col2">0.78</td>
-<td id="T_68d06_row2_col3" class="data row2 col3">2.7%</td>
-<td id="T_68d06_row2_col4" class="data row2 col4">53.2%</td>
+<th id="T_48562_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</th>
+<td id="T_48562_row2_col0" class="data row2 col0">2017</td>
+<td id="T_48562_row2_col1" class="data row2 col1">28.88</td>
+<td id="T_48562_row2_col2" class="data row2 col2">0.78</td>
+<td id="T_48562_row2_col3" class="data row2 col3">2.7%</td>
+<td id="T_48562_row2_col4" class="data row2 col4">53.2%</td>
 </tr>
 <tr class="even">
-<th id="T_68d06_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</th>
-<td id="T_68d06_row3_col0" class="data row3 col0">2018</td>
-<td id="T_68d06_row3_col1" class="data row3 col1">28.08</td>
-<td id="T_68d06_row3_col2" class="data row3 col2">1.26</td>
-<td id="T_68d06_row3_col3" class="data row3 col3">4.5%</td>
-<td id="T_68d06_row3_col4" class="data row3 col4">61.6%</td>
+<th id="T_48562_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</th>
+<td id="T_48562_row3_col0" class="data row3 col0">2018</td>
+<td id="T_48562_row3_col1" class="data row3 col1">28.08</td>
+<td id="T_48562_row3_col2" class="data row3 col2">1.26</td>
+<td id="T_48562_row3_col3" class="data row3 col3">4.5%</td>
+<td id="T_48562_row3_col4" class="data row3 col4">61.6%</td>
 </tr>
 <tr class="odd">
-<th id="T_68d06_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</th>
-<td id="T_68d06_row4_col0" class="data row4 col0">2019</td>
-<td id="T_68d06_row4_col1" class="data row4 col1">25.77</td>
-<td id="T_68d06_row4_col2" class="data row4 col2">1.21</td>
-<td id="T_68d06_row4_col3" class="data row4 col3">4.7%</td>
-<td id="T_68d06_row4_col4" class="data row4 col4">-4.0%</td>
+<th id="T_48562_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</th>
+<td id="T_48562_row4_col0" class="data row4 col0">2019</td>
+<td id="T_48562_row4_col1" class="data row4 col1">25.77</td>
+<td id="T_48562_row4_col2" class="data row4 col2">1.21</td>
+<td id="T_48562_row4_col3" class="data row4 col3">4.7%</td>
+<td id="T_48562_row4_col4" class="data row4 col4">-4.0%</td>
 </tr>
 <tr class="even">
-<th id="T_68d06_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</th>
-<td id="T_68d06_row5_col0" class="data row5 col0">2020</td>
-<td id="T_68d06_row5_col1" class="data row5 col1">25.31</td>
-<td id="T_68d06_row5_col2" class="data row5 col2">1.37</td>
-<td id="T_68d06_row5_col3" class="data row5 col3">5.4%</td>
-<td id="T_68d06_row5_col4" class="data row5 col4">13.3%</td>
+<th id="T_48562_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</th>
+<td id="T_48562_row5_col0" class="data row5 col0">2020</td>
+<td id="T_48562_row5_col1" class="data row5 col1">25.31</td>
+<td id="T_48562_row5_col2" class="data row5 col2">1.37</td>
+<td id="T_48562_row5_col3" class="data row5 col3">5.4%</td>
+<td id="T_48562_row5_col4" class="data row5 col4">13.3%</td>
 </tr>
 <tr class="odd">
-<th id="T_68d06_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</th>
-<td id="T_68d06_row6_col0" class="data row6 col0">2021</td>
-<td id="T_68d06_row6_col1" class="data row6 col1">26.28</td>
-<td id="T_68d06_row6_col2" class="data row6 col2">3.52</td>
-<td id="T_68d06_row6_col3" class="data row6 col3">13.4%</td>
-<td id="T_68d06_row6_col4" class="data row6 col4">157.6%</td>
+<th id="T_48562_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</th>
+<td id="T_48562_row6_col0" class="data row6 col0">2021</td>
+<td id="T_48562_row6_col1" class="data row6 col1">26.28</td>
+<td id="T_48562_row6_col2" class="data row6 col2">3.52</td>
+<td id="T_48562_row6_col3" class="data row6 col3">13.4%</td>
+<td id="T_48562_row6_col4" class="data row6 col4">157.6%</td>
 </tr>
 <tr class="even">
-<th id="T_68d06_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</th>
-<td id="T_68d06_row7_col0" class="data row7 col0">2022</td>
-<td id="T_68d06_row7_col1" class="data row7 col1">26.86</td>
-<td id="T_68d06_row7_col2" class="data row7 col2">6.89</td>
-<td id="T_68d06_row7_col3" class="data row7 col3">25.6%</td>
-<td id="T_68d06_row7_col4" class="data row7 col4">95.6%</td>
+<th id="T_48562_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</th>
+<td id="T_48562_row7_col0" class="data row7 col0">2022</td>
+<td id="T_48562_row7_col1" class="data row7 col1">26.86</td>
+<td id="T_48562_row7_col2" class="data row7 col2">6.89</td>
+<td id="T_48562_row7_col3" class="data row7 col3">25.6%</td>
+<td id="T_48562_row7_col4" class="data row7 col4">95.6%</td>
 </tr>
 <tr class="odd">
-<th id="T_68d06_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</th>
-<td id="T_68d06_row8_col0" class="data row8 col0">2023</td>
-<td id="T_68d06_row8_col1" class="data row8 col1">30.09</td>
-<td id="T_68d06_row8_col2" class="data row8 col2">9.49</td>
-<td id="T_68d06_row8_col3" class="data row8 col3">31.6%</td>
-<td id="T_68d06_row8_col4" class="data row8 col4">37.9%</td>
+<th id="T_48562_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</th>
+<td id="T_48562_row8_col0" class="data row8 col0">2023</td>
+<td id="T_48562_row8_col1" class="data row8 col1">30.09</td>
+<td id="T_48562_row8_col2" class="data row8 col2">9.49</td>
+<td id="T_48562_row8_col3" class="data row8 col3">31.6%</td>
+<td id="T_48562_row8_col4" class="data row8 col4">37.9%</td>
 </tr>
 <tr class="even">
-<th id="T_68d06_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</th>
-<td id="T_68d06_row9_col0" class="data row9 col0">2024</td>
-<td id="T_68d06_row9_col1" class="data row9 col1">31.44</td>
-<td id="T_68d06_row9_col2" class="data row9 col2">12.87</td>
-<td id="T_68d06_row9_col3" class="data row9 col3">40.9%</td>
-<td id="T_68d06_row9_col4" class="data row9 col4">35.5%</td>
+<th id="T_48562_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</th>
+<td id="T_48562_row9_col0" class="data row9 col0">2024</td>
+<td id="T_48562_row9_col1" class="data row9 col1">31.44</td>
+<td id="T_48562_row9_col2" class="data row9 col2">12.87</td>
+<td id="T_48562_row9_col3" class="data row9 col3">40.9%</td>
+<td id="T_48562_row9_col4" class="data row9 col4">35.5%</td>
 </tr>
 <tr class="odd">
-<th id="T_68d06_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</th>
-<td id="T_68d06_row10_col0" class="data row10 col0">2025</td>
-<td id="T_68d06_row10_col1" class="data row10 col1">34.40</td>
-<td id="T_68d06_row10_col2" class="data row10 col2">16.49</td>
-<td id="T_68d06_row10_col3" class="data row10 col3">47.9%</td>
-<td id="T_68d06_row10_col4" class="data row10 col4">28.2%</td>
+<th id="T_48562_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</th>
+<td id="T_48562_row10_col0" class="data row10 col0">2025</td>
+<td id="T_48562_row10_col1" class="data row10 col1">34.40</td>
+<td id="T_48562_row10_col2" class="data row10 col2">16.49</td>
+<td id="T_48562_row10_col3" class="data row10 col3">47.9%</td>
+<td id="T_48562_row10_col4" class="data row10 col4">28.2%</td>
 </tr>
 </tbody>
 </table>
@@ -385,7 +387,7 @@ window.Quarto = {
 <section id="the-first-results" class="level2">
 <h2 class="anchored" data-anchor-id="the-first-results">2. The first results</h2>
 <p>The 2025 total-sales share (47.9%) and the separately reported domestic new-sales share (50.8%) use different denominators. The registered fleet share (12.0%) is a stock measure. Keeping those definitions visible is part of the analysis, not a footnote added at the end.</p>
-<div id="79af0617" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-12T09:43:58.906354Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-12T09:43:58.905911Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-12T09:43:58.922709Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-12T09:43:58.921783Z&quot;}}" data-execution_count="3">
+<div id="5ce5c053" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:15:18.311550Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:15:18.311550Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:15:18.324585Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:15:18.324585Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y2024 <span class="op">=</span> annual.loc[annual.year <span class="op">==</span> <span class="dv">2024</span>].iloc[<span class="dv">0</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y2025 <span class="op">=</span> annual.loc[annual.year <span class="op">==</span> <span class="dv">2025</span>].iloc[<span class="dv">0</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>f2025 <span class="op">=</span> fleet.loc[fleet.period <span class="op">==</span> <span class="st">"2025-12-31"</span>].iloc[<span class="dv">0</span>]</span>
@@ -483,7 +485,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>Interpretation.</strong> NEV sales grew at roughly 47.8% per year across the decade. In 2025 they generated more than all net automobile-market growth (122.3%) because estimated non-NEV sales fell by 0.66 million. This is descriptive accounting, not a causal claim.</p>
-<div id="196af30d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-12T09:43:58.924966Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-12T09:43:58.924597Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-12T09:43:58.941992Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-12T09:43:58.941056Z&quot;}}" data-execution_count="4">
+<div id="2e31295e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:15:18.325983Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:15:18.325983Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:15:18.346327Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:15:18.346327Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>display(Image(filename<span class="op">=</span><span class="bu">str</span>(ROOT <span class="op">/</span> <span class="st">"figures"</span> <span class="op">/</span> <span class="st">"first_look_dashboard.png"</span>), width<span class="op">=</span><span class="dv">1100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -499,7 +501,7 @@ window.Quarto = {
 <p>A linear extrapolation can exceed 100%, so the scenario uses log-odds:</p>
 <p><span class="math display">\[\operatorname{logit}(p_{t+h}) = \operatorname{logit}(p_t) + h g\]</span></p>
 <p>Here <span class="math inline">\(g\)</span> is an explicit annual increment, not an estimated causal effect. Three values illustrate slower, baseline, and faster paths.</p>
-<div id="96a67bab" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-12T09:43:58.943752Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-12T09:43:58.943575Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-12T09:43:58.965620Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-12T09:43:58.964683Z&quot;}}" data-execution_count="5">
+<div id="75415497" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:15:18.346327Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:15:18.346327Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:15:18.367367Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:15:18.367367Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>scenarios <span class="op">=</span> scenario_table(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    anchor_year<span class="op">=</span><span class="dv">2025</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    anchor_share<span class="op">=</span>total_share,</span>
@@ -516,13 +518,13 @@ window.Quarto = {
 <style type="text/css">
 </style>
 
-<table id="T_64fb8" class="caption-top table table-sm table-striped small">
+<table id="T_6bcb6" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th class="index_name level0" data-quarto-table-cell-role="th">scenario</th>
-<th id="T_64fb8_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Baseline</th>
-<th id="T_64fb8_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Faster</th>
-<th id="T_64fb8_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Slower</th>
+<th id="T_6bcb6_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Baseline</th>
+<th id="T_6bcb6_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Faster</th>
+<th id="T_6bcb6_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Slower</th>
 </tr>
 <tr class="even">
 <th class="index_name level0" data-quarto-table-cell-role="th">year</th>
@@ -533,40 +535,40 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<th id="T_64fb8_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2025</th>
-<td id="T_64fb8_row0_col0" class="data row0 col0">47.9%</td>
-<td id="T_64fb8_row0_col1" class="data row0 col1">47.9%</td>
-<td id="T_64fb8_row0_col2" class="data row0 col2">47.9%</td>
+<th id="T_6bcb6_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2025</th>
+<td id="T_6bcb6_row0_col0" class="data row0 col0">47.9%</td>
+<td id="T_6bcb6_row0_col1" class="data row0 col1">47.9%</td>
+<td id="T_6bcb6_row0_col2" class="data row0 col2">47.9%</td>
 </tr>
 <tr class="even">
-<th id="T_64fb8_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2026</th>
-<td id="T_64fb8_row1_col0" class="data row1 col0">54.2%</td>
-<td id="T_64fb8_row1_col1" class="data row1 col1">56.6%</td>
-<td id="T_64fb8_row1_col2" class="data row1 col2">51.7%</td>
+<th id="T_6bcb6_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2026</th>
+<td id="T_6bcb6_row1_col0" class="data row1 col0">54.2%</td>
+<td id="T_6bcb6_row1_col1" class="data row1 col1">56.6%</td>
+<td id="T_6bcb6_row1_col2" class="data row1 col2">51.7%</td>
 </tr>
 <tr class="odd">
-<th id="T_64fb8_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2027</th>
-<td id="T_64fb8_row2_col0" class="data row2 col0">60.3%</td>
-<td id="T_64fb8_row2_col1" class="data row2 col1">65.0%</td>
-<td id="T_64fb8_row2_col2" class="data row2 col2">55.4%</td>
+<th id="T_6bcb6_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2027</th>
+<td id="T_6bcb6_row2_col0" class="data row2 col0">60.3%</td>
+<td id="T_6bcb6_row2_col1" class="data row2 col1">65.0%</td>
+<td id="T_6bcb6_row2_col2" class="data row2 col2">55.4%</td>
 </tr>
 <tr class="even">
-<th id="T_64fb8_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2028</th>
-<td id="T_64fb8_row3_col0" class="data row3 col0">66.1%</td>
-<td id="T_64fb8_row3_col1" class="data row3 col1">72.5%</td>
-<td id="T_64fb8_row3_col2" class="data row3 col2">59.1%</td>
+<th id="T_6bcb6_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2028</th>
+<td id="T_6bcb6_row3_col0" class="data row3 col0">66.1%</td>
+<td id="T_6bcb6_row3_col1" class="data row3 col1">72.5%</td>
+<td id="T_6bcb6_row3_col2" class="data row3 col2">59.1%</td>
 </tr>
 <tr class="odd">
-<th id="T_64fb8_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2029</th>
-<td id="T_64fb8_row4_col0" class="data row4 col0">71.5%</td>
-<td id="T_64fb8_row4_col1" class="data row4 col1">78.9%</td>
-<td id="T_64fb8_row4_col2" class="data row4 col2">62.7%</td>
+<th id="T_6bcb6_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2029</th>
+<td id="T_6bcb6_row4_col0" class="data row4 col0">71.5%</td>
+<td id="T_6bcb6_row4_col1" class="data row4 col1">78.9%</td>
+<td id="T_6bcb6_row4_col2" class="data row4 col2">62.7%</td>
 </tr>
 <tr class="even">
-<th id="T_64fb8_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2030</th>
-<td id="T_64fb8_row5_col0" class="data row5 col0">76.3%</td>
-<td id="T_64fb8_row5_col1" class="data row5 col1">84.1%</td>
-<td id="T_64fb8_row5_col2" class="data row5 col2">66.1%</td>
+<th id="T_6bcb6_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2030</th>
+<td id="T_6bcb6_row5_col0" class="data row5 col0">76.3%</td>
+<td id="T_6bcb6_row5_col1" class="data row5 col1">84.1%</td>
+<td id="T_6bcb6_row5_col2" class="data row5 col2">66.1%</td>
 </tr>
 </tbody>
 </table>
@@ -580,13 +582,316 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="limits-and-next-checks" class="level2">
-<h2 class="anchored" data-anchor-id="limits-and-next-checks">4. Limits and next checks</h2>
+<section id="powertrain-composition-and-exports" class="level2">
+<h2 class="anchored" data-anchor-id="powertrain-composition-and-exports">4. Powertrain composition and exports</h2>
+<p>Reported powertrain components are reconciled to annual NEV totals within published rounding. Exports are enterprise-reported industry volumes; sales minus exports is labelled as a residual proxy rather than as a separately observed domestic-retail series.</p>
+<div id="2d44049f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:15:18.368806Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:15:18.368806Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:15:18.393810Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:15:18.393810Z&quot;}}" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>powertrain <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"powertrain_mix_metrics.csv"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>exports <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"export_metrics.csv"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>display(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    powertrain.loc[</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        powertrain.year.isin([<span class="dv">2020</span>, <span class="dv">2024</span>]),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        [</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"year"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"bev_sales_m"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"phev_sales_m"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"bev_share_of_nev_pct"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"phev_share_of_nev_pct"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"component_reconciliation_gap_m"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    ].<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>display(</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    exports[</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        [</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"year"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">"total_auto_exports_m"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">"nev_exports_m"</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>            <span class="st">"nev_share_of_exports_pct"</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>            <span class="st">"non_export_nev_share_proxy_pct"</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    ].<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>display(Image(filename<span class="op">=</span><span class="bu">str</span>(ROOT <span class="op">/</span> <span class="st">"figures"</span> <span class="op">/</span> <span class="st">"powertrain_exports.png"</span>), width<span class="op">=</span><span class="dv">1100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bev_sales_m</th>
+<th data-quarto-table-cell-role="th">phev_sales_m</th>
+<th data-quarto-table-cell-role="th">bev_share_of_nev_pct</th>
+<th data-quarto-table-cell-role="th">phev_share_of_nev_pct</th>
+<th data-quarto-table-cell-role="th">component_reconciliation_gap_m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2020</td>
+<td>1.12</td>
+<td>0.25</td>
+<td>81.57</td>
+<td>18.36</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">4</th>
+<td>2024</td>
+<td>7.72</td>
+<td>5.14</td>
+<td>60.00</td>
+<td>39.96</td>
+<td>-0.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">total_auto_exports_m</th>
+<th data-quarto-table-cell-role="th">nev_exports_m</th>
+<th data-quarto-table-cell-role="th">nev_share_of_exports_pct</th>
+<th data-quarto-table-cell-role="th">non_export_nev_share_proxy_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2021</td>
+<td>2.02</td>
+<td>0.31</td>
+<td>15.38</td>
+<td>13.24</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2022</td>
+<td>3.11</td>
+<td>0.68</td>
+<td>21.83</td>
+<td>26.14</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>2023</td>
+<td>4.91</td>
+<td>1.20</td>
+<td>24.50</td>
+<td>32.93</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>2024</td>
+<td>5.86</td>
+<td>1.28</td>
+<td>21.92</td>
+<td>45.28</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>2025</td>
+<td>7.10</td>
+<td>2.62</td>
+<td>36.84</td>
+<td>50.82</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_exploration_files/figure-html/cell-7-output-3.png" class="img-fluid figure-img" width="1100"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fleet-turnover-sensitivities-and-held-out-check" class="level2">
+<h2 class="anchored" data-anchor-id="fleet-turnover-sensitivities-and-held-out-check">5. Fleet-turnover sensitivities and held-out check</h2>
+<p>The stock-flow model starts from end-2025 registered stock, holds the domestic-inflow proxy constant, and makes every turnover rate and retirement-allocation weight explicit. The model output is a sensitivity calculation, not a registration forecast.</p>
+<div id="02587cc2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:15:18.396078Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:15:18.396078Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:15:18.426419Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:15:18.426419Z&quot;}}" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fleet_model <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"fleet_turnover_scenarios.csv"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>backtest <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"sales_share_backtest_2023_2025.csv"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>endpoints <span class="op">=</span> fleet_model.loc[</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    fleet_model.year.isin([<span class="dv">2030</span>, <span class="dv">2035</span>]),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"scenario"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"year"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nev_inflow_share_pct"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nev_fleet_share_pct"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nev_stock_m"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"total_auto_stock_m"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>].copy()</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>display(endpoints.<span class="bu">round</span>(<span class="dv">1</span>))</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>display(backtest.<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Held-out 2023-2025 MAE: </span><span class="sc">{</span>backtest<span class="sc">.</span>absolute_error_pp<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss"> percentage points"</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>display(Image(filename<span class="op">=</span><span class="bu">str</span>(ROOT <span class="op">/</span> <span class="st">"figures"</span> <span class="op">/</span> <span class="st">"fleet_turnover_scenarios.png"</span>), width<span class="op">=</span><span class="dv">1100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">scenario</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">nev_inflow_share_pct</th>
+<th data-quarto-table-cell-role="th">nev_fleet_share_pct</th>
+<th data-quarto-table-cell-role="th">nev_stock_m</th>
+<th data-quarto-table-cell-role="th">total_auto_stock_m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Conservative</td>
+<td>2030</td>
+<td>68.6</td>
+<td>30.7</td>
+<td>122.2</td>
+<td>398.2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>Conservative</td>
+<td>2035</td>
+<td>82.2</td>
+<td>50.2</td>
+<td>212.2</td>
+<td>422.4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>Baseline</td>
+<td>2030</td>
+<td>78.3</td>
+<td>33.4</td>
+<td>130.1</td>
+<td>389.8</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">19</th>
+<td>Baseline</td>
+<td>2035</td>
+<td>92.6</td>
+<td>56.7</td>
+<td>231.0</td>
+<td>407.1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">24</th>
+<td>Accelerated</td>
+<td>2030</td>
+<td>85.6</td>
+<td>36.5</td>
+<td>136.1</td>
+<td>373.4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">29</th>
+<td>Accelerated</td>
+<td>2035</td>
+<td>97.2</td>
+<td>63.3</td>
+<td>239.5</td>
+<td>378.5</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">observed_nev_share_pct</th>
+<th data-quarto-table-cell-role="th">predicted_nev_share_pct</th>
+<th data-quarto-table-cell-role="th">absolute_error_pp</th>
+<th data-quarto-table-cell-role="th">train_end_year</th>
+<th data-quarto-table-cell-role="th">annual_logit_gain_fitted</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2023</td>
+<td>31.55</td>
+<td>25.58</td>
+<td>5.97</td>
+<td>2022</td>
+<td>0.42</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2024</td>
+<td>40.93</td>
+<td>34.39</td>
+<td>6.53</td>
+<td>2022</td>
+<td>0.42</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>2025</td>
+<td>47.94</td>
+<td>44.43</td>
+<td>3.50</td>
+<td>2022</td>
+<td>0.42</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Held-out 2023-2025 MAE: 5.34 percentage points</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_exploration_files/figure-html/cell-8-output-4.png" class="img-fluid figure-img" width="1100"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="limits-and-audit-status" class="level2">
+<h2 class="anchored" data-anchor-id="limits-and-audit-status">6. Limits and audit status</h2>
 <ul>
-<li>The pre-2021 annual series was manually transcribed from CAAM charts and will receive an independent second-entry audit.</li>
-<li>NEA changed its charging statistical scope in 2025. The 2024 and 2025 level bars are shown with a visible break; the project uses NEA’s reported 49.7% YoY rate rather than calculating a misleading rate from incompatible endpoints.</li>
-<li>Sales, production, exports, registrations, and fleet stock are not interchangeable.</li>
-<li>The 2030 paths are transparent sensitivity scenarios. They are not probabilities and do not identify causes.</li>
+<li>The independent second-entry audit passed all 12 pre-2021 values.</li>
+<li>Archived evidence notes are pinned by SHA-256 checksums.</li>
+<li>NEA changed its charging statistical scope in 2025; incompatible endpoints are not used to calculate a spurious growth rate.</li>
+<li>The powertrain composition series stops at 2024 because a consistent independently verifiable 2025 split was not established.</li>
+<li>Sales, exports, registrations, fleet stock, and scenario output remain separate statistical concepts.</li>
+<li>The sales-share paths and fleet outputs are transparent sensitivities; they are not probabilities, causal estimates, or registration forecasts.</li>
 </ul>
 
 
@@ -666,7 +971,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/YOUR-GITHUB-USERNAME\.github\.io\/china-nev-transition\/");
+        var filterRegex = new RegExp("https:\/\/andylalala\.github\.io\/china-nev-transition\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1008,7 +1313,7 @@ window.Quarto = {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Data vintage: 12 July 2026</p>
+<p>Data vintage: 14 July 2026</p>
 </div>
   </div>
 </footer>
