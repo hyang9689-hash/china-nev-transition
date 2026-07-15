@@ -9,7 +9,7 @@ project:
 
 website:
   title: "China NEV Transition"
-  site-url: "https://andylalala.github.io/china-nev-transition/"
+  site-url: "https://hyang9689-hash.github.io/china-nev-transition/"
   navbar:
     left:
       - href: index.qmd
@@ -18,7 +18,7 @@ website:
         text: Notebook
     right:
       - icon: github
-        href: "https://github.com/andylalala/china-nev-transition"
+        href: "https://github.com/hyang9689-hash/china-nev-transition"
         aria-label: GitHub
   page-footer:
     left: "Past the Tipping Point, Not Yet Transformed"

@@ -7,9 +7,9 @@ be audited alongside the Git history.
 
 - Release candidate: `0.2.0`
 - Author: `ANDYLALALA`
-- GitHub account: [`andylalala`](https://github.com/andylalala)
-- Repository: [`andylalala/china-nev-transition`](https://github.com/andylalala/china-nev-transition)
-- Site: [`andylalala.github.io/china-nev-transition`](https://andylalala.github.io/china-nev-transition/)
+- GitHub account: [`hyang9689-hash`](https://github.com/hyang9689-hash)
+- Repository: [`hyang9689-hash/china-nev-transition`](https://github.com/hyang9689-hash/china-nev-transition)
+- Site: [`hyang9689-hash.github.io/china-nev-transition`](https://hyang9689-hash.github.io/china-nev-transition/)
 - Submission branch: `main`
 - Data vintage: `2026-07-14`
 - Publication date: `2026-07-15`

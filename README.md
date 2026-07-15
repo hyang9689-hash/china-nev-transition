@@ -137,9 +137,9 @@ Commit subjects follow a simple convention: `chore`, `docs`, `data`,
 
 ## Publication
 
-The canonical repository is [`andylalala/china-nev-transition`](https://github.com/andylalala/china-nev-transition),
+The canonical repository is [`hyang9689-hash/china-nev-transition`](https://github.com/hyang9689-hash/china-nev-transition),
 with the site targeted at
-[`andylalala.github.io/china-nev-transition`](https://andylalala.github.io/china-nev-transition/).
+[`hyang9689-hash.github.io/china-nev-transition`](https://hyang9689-hash.github.io/china-nev-transition/).
 GitHub Actions rebuilds the analysis and notebook, runs the full test suite,
 renders Quarto, validates the artifacts, and deploys GitHub Pages. The exact
 submission commands, milestone commits, workflow run, and live-site verification

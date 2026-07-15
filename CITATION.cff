@@ -6,8 +6,8 @@ authors:
   - name: "ANDYLALALA"
 version: 0.2.0
 date-released: 2026-07-15
-repository-code: "https://github.com/andylalala/china-nev-transition"
-url: "https://andylalala.github.io/china-nev-transition/"
+repository-code: "https://github.com/hyang9689-hash/china-nev-transition"
+url: "https://hyang9689-hash.github.io/china-nev-transition/"
 license: MIT
 abstract: "A reproducible analysis of China's new-energy vehicle sales, powertrain mix, exports, registered fleet, fleet turnover, and charging infrastructure."
 keywords:

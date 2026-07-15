@@ -17,8 +17,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://andylalala.github.io/china-nev-transition/"
-Repository = "https://github.com/andylalala/china-nev-transition"
+Homepage = "https://hyang9689-hash.github.io/china-nev-transition/"
+Repository = "https://github.com/hyang9689-hash/china-nev-transition"
 
 [tool.uv]
 package = false
