@@ -24,7 +24,7 @@ cells = [
         """
         # Past the Tipping Point, Not Yet Transformed
 
-        **Exploration notebook · China NEV transition · data vintage 2026-07-12**
+        **Exploration notebook · China NEV transition · data vintage 2026-07-14**
 
         Central question: *How quickly is China's dominance of new-energy
         vehicles in new-vehicle sales translating into the on-road fleet, and

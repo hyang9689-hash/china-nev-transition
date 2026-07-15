@@ -3,6 +3,9 @@ name = "china-nev-transition"
 version = "0.2.0"
 description = "Reproducible analysis of China's NEV sales, fleet, charging, powertrain mix, and exports."
 readme = "README.md"
+authors = [{ name = "ANDYLALALA" }]
+license = "MIT"
+keywords = ["China", "NEV", "electric vehicles", "fleet turnover", "charging infrastructure"]
 requires-python = ">=3.12,<3.13"
 dependencies = [
   "jupyter>=1.0,<2",
@@ -12,6 +15,10 @@ dependencies = [
   "numpy>=2.0,<3",
   "pandas>=2.2,<3",
 ]
+
+[project.urls]
+Homepage = "https://andylalala.github.io/china-nev-transition/"
+Repository = "https://github.com/andylalala/china-nev-transition"
 
 [tool.uv]
 package = false

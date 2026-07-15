@@ -6,9 +6,34 @@ All notable changes are documented here. Dates use ISO 8601.
 
 ### Planned
 
-- Independent double-entry audit of the pre-2021 CAAM chart series.
-- Consistent monthly charging series from June 2025 onward.
-- BEV/PHEV composition, exports, and fleet-turnover scenarios.
+- Build a consistent monthly charging series from June 2025 onward.
+- Add destination-level export data only if a stable official series is found.
+- Replace aggregate turnover sensitivities with age-cohort survival modeling
+  when suitable registration cohorts become available.
+
+## [0.2.0] - 2026-07-15
+
+### Added
+
+- Independent double-entry audit of all 2015-2020 manual sales values.
+- Redistribution-safe source evidence archive with SHA-256 checksums.
+- Machine-readable contracts for 11 source, assumption, and output datasets.
+- BEV/PHEV/FCEV composition and 2021-2025 automobile export analysis.
+- Transparent 2026-2035 fleet-turnover sensitivities and accounting tests.
+- Held-out 2023-2025 log-odds backtest with reported absolute errors.
+- Locked Python 3.12 environment, bootstrap script, and clean-rebuild command.
+
+### Changed
+
+- Expanded the report, figures, and executed notebook for the new modules.
+- Aligned local and GitHub Actions builds on the same uv lockfile.
+- Replaced publication placeholders with the verified GitHub identity.
+- Removed accidental root-level README render artifacts.
+
+### Verified
+
+- Twenty unit, schema, reconciliation, and stock-flow tests pass.
+- The expanded notebook contains seven executed code cells and no stored errors.
 
 ## [0.1.0] — 2026-07-12
 

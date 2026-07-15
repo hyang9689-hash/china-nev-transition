@@ -1,6 +1,6 @@
 # Data guide and provenance protocol
 
-Data vintage: **2026-07-12**. All numeric files in this repository use UTF-8
+Data vintage: **2026-07-14**. All numeric files in this repository use UTF-8
 CSV and keep reported values separate from derived indicators.
 
 ## Files

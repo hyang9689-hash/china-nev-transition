@@ -79,7 +79,7 @@ Exit test: one documented command sequence rebuilds all public outputs.
 
 ## Day 9 - Publication candidate
 
-- Replace author and repository placeholders.
+- Finalize author, citation, and canonical repository metadata.
 - Create the GitHub repository and push `main`.
 - Enable GitHub Pages from Actions.
 - Review the public site on desktop and mobile.

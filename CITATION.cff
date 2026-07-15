@@ -3,8 +3,16 @@ message: "If you use this project, please cite it using these metadata."
 title: "Past the Tipping Point, Not Yet Transformed"
 type: software
 authors:
-  - name: "Project Author"
-version: 0.1.0
-date-released: 2026-07-12
+  - name: "ANDYLALALA"
+version: 0.2.0
+date-released: 2026-07-15
+repository-code: "https://github.com/andylalala/china-nev-transition"
+url: "https://andylalala.github.io/china-nev-transition/"
 license: MIT
-
+abstract: "A reproducible analysis of China's new-energy vehicle sales, powertrain mix, exports, registered fleet, fleet turnover, and charging infrastructure."
+keywords:
+  - China
+  - new-energy vehicles
+  - electric vehicles
+  - fleet turnover
+  - charging infrastructure

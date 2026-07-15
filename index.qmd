@@ -1,8 +1,8 @@
 ---
 title: "Past the Tipping Point, Not Yet Transformed"
 subtitle: "China's NEV sales, fleet, and charging transition, 2015–2026"
-author: "Project Author"
-date: "2026-07-12"
+author: "ANDYLALALA"
+date: "2026-07-14"
 date-format: "D MMMM YYYY"
 description: "A reproducible analysis of how China's new-energy vehicle sales are translating into the on-road fleet and charging network."
 image: figures/first_look_dashboard.png
@@ -288,15 +288,13 @@ The source register records publisher, title, date, retrieval date, URL,
 coverage, and definition notes. The notebook is committed with executed outputs;
 the Quarto source and rendered HTML are both included for inspection.
 
-# Next milestones
+# Remaining roadmap
 
-1. Independently re-enter and verify the pre-2021 chart values.
-2. Archive permissible raw source files and add SHA-256 checksums.
-3. Build a consistent June-2025-onward monthly charging series.
-4. Add BEV/PHEV composition and automobile-export modules.
-5. Add a fleet-turnover model with conservative, baseline, and accelerated
-   retirement assumptions.
-6. Replace the author and GitHub placeholders before publication.
+1. Build a consistent monthly charging series from June 2025 onward.
+2. Replace aggregate turnover sensitivities with age-cohort survival modeling
+   when suitable registration cohorts become available.
+3. Add destination-level export analysis only if a stable official series can
+   be sourced without mixing customs and enterprise-reporting definitions.
 
 # References
 

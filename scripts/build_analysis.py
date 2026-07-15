@@ -260,7 +260,7 @@ def build_dashboard(
     fig.text(
         0.07,
         0.035,
-        "Sources: CAAM/MIIT, National Bureau of Statistics, Ministry of Public Security, National Energy Administration, NDRC. Data vintage: 12 July 2026.",
+        "Sources: CAAM/MIIT, National Bureau of Statistics, Ministry of Public Security, National Energy Administration, NDRC. Data vintage: 14 July 2026.",
         ha="left",
         color=SLATE,
         fontsize=8.5,

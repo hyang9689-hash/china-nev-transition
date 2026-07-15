@@ -14,3 +14,5 @@ _site/
 Thumbs.db
 **/*.quarto_ipynb
 /.quarto/
+/README.html
+/README_files/

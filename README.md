@@ -137,13 +137,16 @@ Commit subjects follow a simple convention: `chore`, `docs`, `data`,
 
 ## Publication
 
-No remote has been added and nothing has been uploaded. Replace the author and
-GitHub username placeholders, then follow `GITHUB_PUBLISHING.md`. The included
-workflow tests the analysis, renders Quarto, and can deploy the `docs/` artifact
-through GitHub Pages after you enable Pages in the repository settings.
+The canonical repository is [`andylalala/china-nev-transition`](https://github.com/andylalala/china-nev-transition),
+with the site targeted at
+[`andylalala.github.io/china-nev-transition`](https://andylalala.github.io/china-nev-transition/).
+GitHub Actions rebuilds the analysis and notebook, runs the full test suite,
+renders Quarto, validates the artifacts, and deploys GitHub Pages. The exact
+submission commands, milestone commits, workflow run, and live-site verification
+are recorded in `PUBLICATION_LOG.md`.
 
 ## License and citation
 
 Code is released under the MIT License. Source data retain their original terms
-and attribution. Update `CITATION.cff` with your name and final repository URL
-before the first public release.
+and attribution. Citation metadata identify **ANDYLALALA**, version **0.2.0**,
+and the canonical repository and site URLs in `CITATION.cff`.
