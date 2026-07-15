@@ -79,12 +79,12 @@ Exit test: one documented command sequence rebuilds all public outputs.
 
 ## Day 9 - Publication candidate
 
-- Finalize author, citation, and canonical repository metadata.
-- Create the GitHub repository and push `main`.
-- Enable GitHub Pages from Actions.
-- Review the public site on desktop and mobile.
+- [x] Finalize author, citation, and canonical repository metadata.
+- [x] Create the GitHub repository and push `main`.
+- [x] Enable GitHub Pages from Actions.
+- [x] Verify the public report, notebook, figures, links, and HTTPS responses.
 
-Exit test: a clean public URL and green workflow run.
+Exit test: passed on 2026-07-15 with a clean public URL and green workflow run.
 
 ## Day 10 - Version 1.0
 
