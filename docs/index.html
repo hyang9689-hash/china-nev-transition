@@ -471,13 +471,13 @@ Figure&nbsp;4: Two-panel fleet-turnover sensitivity showing projected NEV shares
 </div>
 <p>The model begins with the observed end-2025 stock of <strong>43.97 million NEVs in 366.11 million automobiles</strong> and the 2025 non-export residual proxy of <strong>27.302 million vehicle inflows</strong>, 50.8% of them NEVs. Each scenario then applies the same auditable accounting identity:</p>
 <p><span class="math display">\[
-    ext{ending stock}
+\text{ending stock}
 =
-    ext{opening stock}
+\text{opening stock}
 +
-    ext{inflow}
+\text{inflow}
 -
-    ext{retirements}
+\text{retirements}
 \]</span></p>
 <p>The annual domestic-inflow volume is held constant to isolate turnover and composition. Conservative, baseline, and accelerated bundles use annual total fleet-turnover rates of <strong>5.5%, 6.0%, and 7.0%</strong>, paired with the same 0.15, 0.25, and 0.35 log-odds gains used in the sales-share sensitivities. Because China’s registered NEV stock is comparatively young, an NEV receives <strong>0.25 times</strong> the near-term retirement-allocation weight of a non-NEV. Every rate and weight is stored in the machine-readable assumptions table, not hidden in the plotting code.</p>
 <p>In the baseline, the NEV share of annual domestic inflow reaches <strong>78.3% in 2030</strong>, but the NEV fleet share reaches only <strong>33.4%</strong>. By 2035 the baseline figures are <strong>92.6% of inflow and 56.7% of fleet stock</strong>. Across all three bundles, the 2035 fleet share ranges from <strong>50.2% to 63.3%</strong> and total stock ranges from <strong>378.5 million to 422.4 million vehicles</strong>.</p>
@@ -496,7 +496,7 @@ Figure&nbsp;4: Two-panel fleet-turnover sensitivity showing projected NEV shares
 </section>
 <section id="reproducibility" class="level1">
 <h1>Reproducibility</h1>
-<p>From the repository root, Windows users can run <code>.scripts ebuild.ps1</code>. The equivalent cross-platform commands are:</p>
+<p>From the repository root, Windows users can run <code>.\scripts\rebuild.ps1</code>. The equivalent cross-platform commands are:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--frozen</span> <span class="at">--python</span> 3.12</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--frozen</span> python scripts/build_analysis.py</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run <span class="at">--frozen</span> python scripts/build_notebook.py</span>

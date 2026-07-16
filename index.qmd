@@ -231,13 +231,13 @@ million vehicle inflows**, 50.8% of them NEVs. Each scenario then applies the
 same auditable accounting identity:
 
 $$
-	ext{ending stock}
+\text{ending stock}
 =
-	ext{opening stock}
+\text{opening stock}
 +
-	ext{inflow}
+\text{inflow}
 -
-	ext{retirements}
+\text{retirements}
 $$
 
 The annual domestic-inflow volume is held constant to isolate turnover and
@@ -271,7 +271,7 @@ stock-flow identities, anchors, and sensitivity levers are visible and tested.
 
 # Reproducibility
 
-From the repository root, Windows users can run `.scriptsebuild.ps1`. The
+From the repository root, Windows users can run `.\scripts\rebuild.ps1`. The
 equivalent cross-platform commands are:
 
 ```bash

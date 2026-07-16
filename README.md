@@ -84,7 +84,7 @@ as a compatibility list for tools that only support pip.
 On Windows, install uv and run:
 
 ```powershell
-.scriptsootstrap.ps1
+.\scripts\bootstrap.ps1
 ```
 
 The bootstrap creates `.venv`, installs the exact locked packages, and verifies
@@ -93,7 +93,7 @@ pandas, NumPy, Matplotlib, and the notebook libraries. No activation is needed.
 For a complete rebuild and verification:
 
 ```powershell
-.scriptsebuild.ps1
+.\scripts\rebuild.ps1
 ```
 
 The equivalent cross-platform sequence is:
