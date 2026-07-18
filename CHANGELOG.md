@@ -11,6 +11,25 @@ All notable changes are documented here. Dates use ISO 8601.
 - Replace aggregate turnover sensitivities with age-cohort survival modeling
   when suitable registration cohorts become available.
 
+## [1.0.0] - 2026-07-18
+
+### Added
+
+- Root `final_report.qmd` and rendered `final_report.pdf` aligned to the
+  SUM26001 final-report rubric.
+- Submission-package validation for required files, README links, ignore rules,
+  report sections, citations, PDF integrity, and unresolved student metadata.
+- Final PDF rendering in the one-command rebuild and GitHub Actions workflow.
+
+### Changed
+
+- Standardized public authorship as Yang Haoyuan (杨皓元).
+- Expanded the README with project evolution, objectives, progress,
+  bottlenecks, lessons, member information, and report links.
+- Prepared the repository metadata for the final 1.0.0 course release.
+- Pinned Quarto 1.9.38 and made notebook cell/table IDs and execution metadata
+  deterministic across repeated local and CI rebuilds.
+
 ## [0.2.0] - 2026-07-15
 
 ### Added
@@ -53,4 +72,3 @@ All notable changes are documented here. Dates use ISO 8601.
 - Separated domestic share, total CAAM share, registrations, and fleet stock.
 - Marked the 2025 NEA charging scope break and used the official reported YoY
   rate instead of calculating across incompatible endpoints.
-

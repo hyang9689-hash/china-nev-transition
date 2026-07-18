@@ -3,4 +3,4 @@ data/raw/source_snapshots/*.txt text eol=lf
 *.png binary
 *.jpg binary
 *.jpeg binary
-
+*.pdf binary

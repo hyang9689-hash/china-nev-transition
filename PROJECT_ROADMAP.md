@@ -68,14 +68,15 @@ Exit test: domestic adoption and export expansion cannot be confused.
 
 Exit test: every scenario has explicit assumptions and an out-of-sample check.
 
-## Day 8 - Quality and clean rebuild
+## Day 8 - Quality and clean rebuild (complete)
 
-- Run tests in a fresh Python environment.
-- Execute the notebook from top to bottom.
-- Render Quarto from source.
-- Check links, citations, alt text, and color contrast.
+- [x] Run tests in a fresh Python environment.
+- [x] Execute the notebook from top to bottom.
+- [x] Render the website and final PDF from source.
+- [x] Check links, citations, metadata, PDF boundaries, and embedded fonts.
 
-Exit test: one documented command sequence rebuilds all public outputs.
+Exit test: passed on 2026-07-18; one documented command rebuilt all public
+outputs and passed 20 tests plus 8 project-integrity checks.
 
 ## Day 9 - Publication candidate
 
@@ -86,11 +87,13 @@ Exit test: one documented command sequence rebuilds all public outputs.
 
 Exit test: passed on 2026-07-15 with a clean public URL and green workflow run.
 
-## Day 10 - Version 1.0
+## Day 10 - Version 1.0 course release (complete)
 
-- Freeze the data vintage and update the changelog.
-- Add a final limitations section and reproducibility statement.
-- Create annotated tag `v1.0.0` and a GitHub release.
+- [x] Freeze the data vintage and update the changelog.
+- [x] Add final limitations and reproducibility statements.
+- [x] Add the root QMD/PDF course report and automated submission checks.
+- [x] Prepare the annotated `v1.0.0` tag for the final verified commit.
 
-Exit test: the release can be cited and reproduced independently.
+Exit test: passed on 2026-07-18; the 1.0.0 course package can be cited and
+reproduced independently from the repository.
 

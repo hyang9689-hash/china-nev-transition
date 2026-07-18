@@ -1,8 +1,8 @@
 ---
 title: "Past the Tipping Point, Not Yet Transformed"
 subtitle: "China's NEV sales, fleet, and charging transition, 2015–2026"
-author: "ANDYLALALA"
-date: "2026-07-14"
+author: "Yang Haoyuan (杨皓元)"
+date: "2026-07-18"
 date-format: "D MMMM YYYY"
 description: "A reproducible analysis of how China's new-energy vehicle sales are translating into the on-road fleet and charging network."
 image: figures/first_look_dashboard.png

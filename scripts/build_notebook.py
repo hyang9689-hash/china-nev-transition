@@ -40,7 +40,7 @@ cells = [
         import sys
 
         import pandas as pd
-        from IPython.display import Image, display
+        from IPython.display import HTML, Image, display
 
         ROOT = Path.cwd()
         if ROOT.name == "notebooks":
@@ -84,16 +84,18 @@ cells = [
             non_nev_sales_m=lambda x: x.total_auto_sales_m - x.nev_sales_m,
         )
 
-        display(
+        annual_table = (
             annual[["year", "total_auto_sales_m", "nev_sales_m", "nev_share_total_sales_pct", "nev_sales_yoy_pct"]]
             .round(2)
-            .style.format({
+            .style.set_uuid("annual-market")
+            .format({
                 "total_auto_sales_m": "{:.2f}",
                 "nev_sales_m": "{:.2f}",
                 "nev_share_total_sales_pct": "{:.1f}%",
                 "nev_sales_yoy_pct": "{:.1f}%",
             })
         )
+        display(HTML(annual_table.to_html()))
         """
     ),
     markdown(
@@ -185,11 +187,13 @@ cells = [
             end_year=2030,
             annual_logit_gains={"Slower": 0.15, "Baseline": 0.25, "Faster": 0.35},
         )
-        display(
+        scenario_table_html = (
             scenarios.pivot(index="year", columns="scenario", values="nev_share_pct")
             .round(1)
-            .style.format("{:.1f}%")
+            .style.set_uuid("scenario-shares")
+            .format("{:.1f}%")
         )
+        display(HTML(scenario_table_html.to_html()))
         display(Image(filename=str(ROOT / "figures" / "scenario_paths.png"), width=900))
         """
     ),
@@ -284,6 +288,9 @@ cells = [
         """
     ),
 ]
+
+for index, cell in enumerate(cells, start=1):
+    cell["id"] = f"cell-{index:02d}"
 
 notebook = nbf.v4.new_notebook(
     cells=cells,

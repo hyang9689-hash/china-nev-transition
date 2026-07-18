@@ -33,13 +33,16 @@ Invoke-Step "Regenerate notebook source" {
 }
 Invoke-Step "Execute notebook" {
     uv run --frozen python -m nbconvert --to notebook --execute --inplace `
-        notebooks/01_exploration.ipynb --ExecutePreprocessor.timeout=120
+        notebooks/01_exploration.ipynb --ExecutePreprocessor.timeout=120 --ExecutePreprocessor.record_timing=False
 }
 Invoke-Step "Run unit and schema tests" {
     uv run --frozen python -m unittest discover -s tests -v
 }
 Invoke-Step "Render Quarto site" {
     quarto render
+}
+Invoke-Step "Render final course PDF" {
+    quarto render final_report.qmd --output final_report.pdf
 }
 Invoke-Step "Validate project and rendered outputs" {
     uv run --frozen python scripts/validate_project.py

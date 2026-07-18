@@ -1,9 +1,9 @@
 [project]
 name = "china-nev-transition"
-version = "0.2.0"
+version = "1.0.0"
 description = "Reproducible analysis of China's NEV sales, fleet, charging, powertrain mix, and exports."
 readme = "README.md"
-authors = [{ name = "ANDYLALALA" }]
+authors = [{ name = "Yang Haoyuan" }]
 license = "MIT"
 keywords = ["China", "NEV", "electric vehicles", "fleet turnover", "charging infrastructure"]
 requires-python = ">=3.12,<3.13"

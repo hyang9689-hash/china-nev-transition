@@ -225,12 +225,12 @@ window.Quarto = {
 <p><strong>Exploration notebook · China NEV transition · data vintage 2026-07-14</strong></p>
 <p>Central question: <em>How quickly is China’s dominance of new-energy vehicles in new-vehicle sales translating into the on-road fleet, and has charging infrastructure kept pace?</em></p>
 <p>The notebook keeps annual observations, partial-year observations, registered fleet stock, and charging connectors in separate tables.</p>
-<div id="2dbbc380" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:30:42.332286Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:30:42.332286Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:30:42.800453Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:30:42.800453Z&quot;}}" data-execution_count="1">
+<div id="cell-02" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image, display</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> HTML, Image, display</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> Path.cwd()</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ROOT.name <span class="op">==</span> <span class="st">"notebooks"</span>:</span>
@@ -258,126 +258,128 @@ window.Quarto = {
 <p><span class="math display">\[\text{YoY growth}_t = \left(\frac{x_t}{x_{t-1}} - 1\right) \times 100\]</span></p>
 <p><span class="math display">\[\text{CAGR} = \left(\frac{x_{end}}{x_{start}}\right)^{1/n} - 1\]</span></p>
 <p>A growth contribution above 100% is possible: it means the growing component more than explains total net growth while another component contracted.</p>
-<div id="aa111305" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:30:42.800453Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:30:42.800453Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:30:43.183980Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:30:43.183980Z&quot;}}" data-execution_count="2">
+<div id="cell-04" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>annual <span class="op">=</span> annual.assign(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    nev_share_total_sales_pct<span class="op">=</span><span class="kw">lambda</span> x: <span class="dv">100</span> <span class="op">*</span> x.nev_sales_m <span class="op">/</span> x.total_auto_sales_m,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    nev_sales_yoy_pct<span class="op">=</span><span class="kw">lambda</span> x: x.nev_sales_m.pct_change() <span class="op">*</span> <span class="dv">100</span>,</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    non_nev_sales_m<span class="op">=</span><span class="kw">lambda</span> x: x.total_auto_sales_m <span class="op">-</span> x.nev_sales_m,</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>display(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>annual_table <span class="op">=</span> (</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    annual[[<span class="st">"year"</span>, <span class="st">"total_auto_sales_m"</span>, <span class="st">"nev_sales_m"</span>, <span class="st">"nev_share_total_sales_pct"</span>, <span class="st">"nev_sales_yoy_pct"</span>]]</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    .style.<span class="bu">format</span>({</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"total_auto_sales_m"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">"</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nev_sales_m"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">"</span>,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nev_share_total_sales_pct"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">%"</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nev_sales_yoy_pct"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">%"</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    .style.set_uuid(<span class="st">"annual-market"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">format</span>({</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"total_auto_sales_m"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nev_sales_m"</span>: <span class="st">"</span><span class="sc">{:.2f}</span><span class="st">"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nev_share_total_sales_pct"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">%"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nev_sales_yoy_pct"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">%"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>display(HTML(annual_table.to_html()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <style type="text/css">
 </style>
 
-<table id="T_a5a68" class="caption-top table table-sm table-striped small">
+<table id="T_annual-market" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_a5a68_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">year</th>
-<th id="T_a5a68_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">total_auto_sales_m</th>
-<th id="T_a5a68_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">nev_sales_m</th>
-<th id="T_a5a68_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">nev_share_total_sales_pct</th>
-<th id="T_a5a68_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">nev_sales_yoy_pct</th>
+<th id="T_annual-market_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">year</th>
+<th id="T_annual-market_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">total_auto_sales_m</th>
+<th id="T_annual-market_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">nev_sales_m</th>
+<th id="T_annual-market_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">nev_share_total_sales_pct</th>
+<th id="T_annual-market_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">nev_sales_yoy_pct</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th id="T_a5a68_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</th>
-<td id="T_a5a68_row0_col0" class="data row0 col0">2015</td>
-<td id="T_a5a68_row0_col1" class="data row0 col1">24.60</td>
-<td id="T_a5a68_row0_col2" class="data row0 col2">0.33</td>
-<td id="T_a5a68_row0_col3" class="data row0 col3">1.4%</td>
-<td id="T_a5a68_row0_col4" class="data row0 col4">nan%</td>
+<th id="T_annual-market_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</th>
+<td id="T_annual-market_row0_col0" class="data row0 col0">2015</td>
+<td id="T_annual-market_row0_col1" class="data row0 col1">24.60</td>
+<td id="T_annual-market_row0_col2" class="data row0 col2">0.33</td>
+<td id="T_annual-market_row0_col3" class="data row0 col3">1.4%</td>
+<td id="T_annual-market_row0_col4" class="data row0 col4">nan%</td>
 </tr>
 <tr class="even">
-<th id="T_a5a68_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</th>
-<td id="T_a5a68_row1_col0" class="data row1 col0">2016</td>
-<td id="T_a5a68_row1_col1" class="data row1 col1">28.03</td>
-<td id="T_a5a68_row1_col2" class="data row1 col2">0.51</td>
-<td id="T_a5a68_row1_col3" class="data row1 col3">1.8%</td>
-<td id="T_a5a68_row1_col4" class="data row1 col4">53.1%</td>
+<th id="T_annual-market_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</th>
+<td id="T_annual-market_row1_col0" class="data row1 col0">2016</td>
+<td id="T_annual-market_row1_col1" class="data row1 col1">28.03</td>
+<td id="T_annual-market_row1_col2" class="data row1 col2">0.51</td>
+<td id="T_annual-market_row1_col3" class="data row1 col3">1.8%</td>
+<td id="T_annual-market_row1_col4" class="data row1 col4">53.1%</td>
 </tr>
 <tr class="odd">
-<th id="T_a5a68_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</th>
-<td id="T_a5a68_row2_col0" class="data row2 col0">2017</td>
-<td id="T_a5a68_row2_col1" class="data row2 col1">28.88</td>
-<td id="T_a5a68_row2_col2" class="data row2 col2">0.78</td>
-<td id="T_a5a68_row2_col3" class="data row2 col3">2.7%</td>
-<td id="T_a5a68_row2_col4" class="data row2 col4">53.2%</td>
+<th id="T_annual-market_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</th>
+<td id="T_annual-market_row2_col0" class="data row2 col0">2017</td>
+<td id="T_annual-market_row2_col1" class="data row2 col1">28.88</td>
+<td id="T_annual-market_row2_col2" class="data row2 col2">0.78</td>
+<td id="T_annual-market_row2_col3" class="data row2 col3">2.7%</td>
+<td id="T_annual-market_row2_col4" class="data row2 col4">53.2%</td>
 </tr>
 <tr class="even">
-<th id="T_a5a68_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</th>
-<td id="T_a5a68_row3_col0" class="data row3 col0">2018</td>
-<td id="T_a5a68_row3_col1" class="data row3 col1">28.08</td>
-<td id="T_a5a68_row3_col2" class="data row3 col2">1.26</td>
-<td id="T_a5a68_row3_col3" class="data row3 col3">4.5%</td>
-<td id="T_a5a68_row3_col4" class="data row3 col4">61.6%</td>
+<th id="T_annual-market_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</th>
+<td id="T_annual-market_row3_col0" class="data row3 col0">2018</td>
+<td id="T_annual-market_row3_col1" class="data row3 col1">28.08</td>
+<td id="T_annual-market_row3_col2" class="data row3 col2">1.26</td>
+<td id="T_annual-market_row3_col3" class="data row3 col3">4.5%</td>
+<td id="T_annual-market_row3_col4" class="data row3 col4">61.6%</td>
 </tr>
 <tr class="odd">
-<th id="T_a5a68_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</th>
-<td id="T_a5a68_row4_col0" class="data row4 col0">2019</td>
-<td id="T_a5a68_row4_col1" class="data row4 col1">25.77</td>
-<td id="T_a5a68_row4_col2" class="data row4 col2">1.21</td>
-<td id="T_a5a68_row4_col3" class="data row4 col3">4.7%</td>
-<td id="T_a5a68_row4_col4" class="data row4 col4">-4.0%</td>
+<th id="T_annual-market_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</th>
+<td id="T_annual-market_row4_col0" class="data row4 col0">2019</td>
+<td id="T_annual-market_row4_col1" class="data row4 col1">25.77</td>
+<td id="T_annual-market_row4_col2" class="data row4 col2">1.21</td>
+<td id="T_annual-market_row4_col3" class="data row4 col3">4.7%</td>
+<td id="T_annual-market_row4_col4" class="data row4 col4">-4.0%</td>
 </tr>
 <tr class="even">
-<th id="T_a5a68_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</th>
-<td id="T_a5a68_row5_col0" class="data row5 col0">2020</td>
-<td id="T_a5a68_row5_col1" class="data row5 col1">25.31</td>
-<td id="T_a5a68_row5_col2" class="data row5 col2">1.37</td>
-<td id="T_a5a68_row5_col3" class="data row5 col3">5.4%</td>
-<td id="T_a5a68_row5_col4" class="data row5 col4">13.3%</td>
+<th id="T_annual-market_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</th>
+<td id="T_annual-market_row5_col0" class="data row5 col0">2020</td>
+<td id="T_annual-market_row5_col1" class="data row5 col1">25.31</td>
+<td id="T_annual-market_row5_col2" class="data row5 col2">1.37</td>
+<td id="T_annual-market_row5_col3" class="data row5 col3">5.4%</td>
+<td id="T_annual-market_row5_col4" class="data row5 col4">13.3%</td>
 </tr>
 <tr class="odd">
-<th id="T_a5a68_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</th>
-<td id="T_a5a68_row6_col0" class="data row6 col0">2021</td>
-<td id="T_a5a68_row6_col1" class="data row6 col1">26.28</td>
-<td id="T_a5a68_row6_col2" class="data row6 col2">3.52</td>
-<td id="T_a5a68_row6_col3" class="data row6 col3">13.4%</td>
-<td id="T_a5a68_row6_col4" class="data row6 col4">157.6%</td>
+<th id="T_annual-market_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</th>
+<td id="T_annual-market_row6_col0" class="data row6 col0">2021</td>
+<td id="T_annual-market_row6_col1" class="data row6 col1">26.28</td>
+<td id="T_annual-market_row6_col2" class="data row6 col2">3.52</td>
+<td id="T_annual-market_row6_col3" class="data row6 col3">13.4%</td>
+<td id="T_annual-market_row6_col4" class="data row6 col4">157.6%</td>
 </tr>
 <tr class="even">
-<th id="T_a5a68_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</th>
-<td id="T_a5a68_row7_col0" class="data row7 col0">2022</td>
-<td id="T_a5a68_row7_col1" class="data row7 col1">26.86</td>
-<td id="T_a5a68_row7_col2" class="data row7 col2">6.89</td>
-<td id="T_a5a68_row7_col3" class="data row7 col3">25.6%</td>
-<td id="T_a5a68_row7_col4" class="data row7 col4">95.6%</td>
+<th id="T_annual-market_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</th>
+<td id="T_annual-market_row7_col0" class="data row7 col0">2022</td>
+<td id="T_annual-market_row7_col1" class="data row7 col1">26.86</td>
+<td id="T_annual-market_row7_col2" class="data row7 col2">6.89</td>
+<td id="T_annual-market_row7_col3" class="data row7 col3">25.6%</td>
+<td id="T_annual-market_row7_col4" class="data row7 col4">95.6%</td>
 </tr>
 <tr class="odd">
-<th id="T_a5a68_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</th>
-<td id="T_a5a68_row8_col0" class="data row8 col0">2023</td>
-<td id="T_a5a68_row8_col1" class="data row8 col1">30.09</td>
-<td id="T_a5a68_row8_col2" class="data row8 col2">9.49</td>
-<td id="T_a5a68_row8_col3" class="data row8 col3">31.6%</td>
-<td id="T_a5a68_row8_col4" class="data row8 col4">37.9%</td>
+<th id="T_annual-market_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</th>
+<td id="T_annual-market_row8_col0" class="data row8 col0">2023</td>
+<td id="T_annual-market_row8_col1" class="data row8 col1">30.09</td>
+<td id="T_annual-market_row8_col2" class="data row8 col2">9.49</td>
+<td id="T_annual-market_row8_col3" class="data row8 col3">31.6%</td>
+<td id="T_annual-market_row8_col4" class="data row8 col4">37.9%</td>
 </tr>
 <tr class="even">
-<th id="T_a5a68_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</th>
-<td id="T_a5a68_row9_col0" class="data row9 col0">2024</td>
-<td id="T_a5a68_row9_col1" class="data row9 col1">31.44</td>
-<td id="T_a5a68_row9_col2" class="data row9 col2">12.87</td>
-<td id="T_a5a68_row9_col3" class="data row9 col3">40.9%</td>
-<td id="T_a5a68_row9_col4" class="data row9 col4">35.5%</td>
+<th id="T_annual-market_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</th>
+<td id="T_annual-market_row9_col0" class="data row9 col0">2024</td>
+<td id="T_annual-market_row9_col1" class="data row9 col1">31.44</td>
+<td id="T_annual-market_row9_col2" class="data row9 col2">12.87</td>
+<td id="T_annual-market_row9_col3" class="data row9 col3">40.9%</td>
+<td id="T_annual-market_row9_col4" class="data row9 col4">35.5%</td>
 </tr>
 <tr class="odd">
-<th id="T_a5a68_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</th>
-<td id="T_a5a68_row10_col0" class="data row10 col0">2025</td>
-<td id="T_a5a68_row10_col1" class="data row10 col1">34.40</td>
-<td id="T_a5a68_row10_col2" class="data row10 col2">16.49</td>
-<td id="T_a5a68_row10_col3" class="data row10 col3">47.9%</td>
-<td id="T_a5a68_row10_col4" class="data row10 col4">28.2%</td>
+<th id="T_annual-market_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</th>
+<td id="T_annual-market_row10_col0" class="data row10 col0">2025</td>
+<td id="T_annual-market_row10_col1" class="data row10 col1">34.40</td>
+<td id="T_annual-market_row10_col2" class="data row10 col2">16.49</td>
+<td id="T_annual-market_row10_col3" class="data row10 col3">47.9%</td>
+<td id="T_annual-market_row10_col4" class="data row10 col4">28.2%</td>
 </tr>
 </tbody>
 </table>
@@ -387,7 +389,7 @@ window.Quarto = {
 <section id="the-first-results" class="level2">
 <h2 class="anchored" data-anchor-id="the-first-results">2. The first results</h2>
 <p>The 2025 total-sales share (47.9%) and the separately reported domestic new-sales share (50.8%) use different denominators. The registered fleet share (12.0%) is a stock measure. Keeping those definitions visible is part of the analysis, not a footnote added at the end.</p>
-<div id="cf453eac" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:30:43.185465Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:30:43.185465Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:30:43.195854Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:30:43.195854Z&quot;}}" data-execution_count="3">
+<div id="cell-06" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y2024 <span class="op">=</span> annual.loc[annual.year <span class="op">==</span> <span class="dv">2024</span>].iloc[<span class="dv">0</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y2025 <span class="op">=</span> annual.loc[annual.year <span class="op">==</span> <span class="dv">2025</span>].iloc[<span class="dv">0</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>f2025 <span class="op">=</span> fleet.loc[fleet.period <span class="op">==</span> <span class="st">"2025-12-31"</span>].iloc[<span class="dv">0</span>]</span>
@@ -485,7 +487,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>Interpretation.</strong> NEV sales grew at roughly 47.8% per year across the decade. In 2025 they generated more than all net automobile-market growth (122.3%) because estimated non-NEV sales fell by 0.66 million. This is descriptive accounting, not a causal claim.</p>
-<div id="6a836953" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:30:43.195854Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:30:43.195854Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:30:43.215695Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:30:43.215695Z&quot;}}" data-execution_count="4">
+<div id="cell-08" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>display(Image(filename<span class="op">=</span><span class="bu">str</span>(ROOT <span class="op">/</span> <span class="st">"figures"</span> <span class="op">/</span> <span class="st">"first_look_dashboard.png"</span>), width<span class="op">=</span><span class="dv">1100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -501,30 +503,32 @@ window.Quarto = {
 <p>A linear extrapolation can exceed 100%, so the scenario uses log-odds:</p>
 <p><span class="math display">\[\operatorname{logit}(p_{t+h}) = \operatorname{logit}(p_t) + h g\]</span></p>
 <p>Here <span class="math inline">\(g\)</span> is an explicit annual increment, not an estimated causal effect. Three values illustrate slower, baseline, and faster paths.</p>
-<div id="04e368a5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:30:43.217830Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:30:43.217830Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:30:43.235678Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:30:43.234621Z&quot;}}" data-execution_count="5">
+<div id="cell-10" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>scenarios <span class="op">=</span> scenario_table(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    anchor_year<span class="op">=</span><span class="dv">2025</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    anchor_share<span class="op">=</span>total_share,</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    end_year<span class="op">=</span><span class="dv">2030</span>,</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    annual_logit_gains<span class="op">=</span>{<span class="st">"Slower"</span>: <span class="fl">0.15</span>, <span class="st">"Baseline"</span>: <span class="fl">0.25</span>, <span class="st">"Faster"</span>: <span class="fl">0.35</span>},</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>display(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>scenario_table_html <span class="op">=</span> (</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    scenarios.pivot(index<span class="op">=</span><span class="st">"year"</span>, columns<span class="op">=</span><span class="st">"scenario"</span>, values<span class="op">=</span><span class="st">"nev_share_pct"</span>)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">round</span>(<span class="dv">1</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    .style.<span class="bu">format</span>(<span class="st">"</span><span class="sc">{:.1f}</span><span class="st">%"</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>display(Image(filename<span class="op">=</span><span class="bu">str</span>(ROOT <span class="op">/</span> <span class="st">"figures"</span> <span class="op">/</span> <span class="st">"scenario_paths.png"</span>), width<span class="op">=</span><span class="dv">900</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    .style.set_uuid(<span class="st">"scenario-shares"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">format</span>(<span class="st">"</span><span class="sc">{:.1f}</span><span class="st">%"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>display(HTML(scenario_table_html.to_html()))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>display(Image(filename<span class="op">=</span><span class="bu">str</span>(ROOT <span class="op">/</span> <span class="st">"figures"</span> <span class="op">/</span> <span class="st">"scenario_paths.png"</span>), width<span class="op">=</span><span class="dv">900</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <style type="text/css">
 </style>
 
-<table id="T_6d9e8" class="caption-top table table-sm table-striped small">
+<table id="T_scenario-shares" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th class="index_name level0" data-quarto-table-cell-role="th">scenario</th>
-<th id="T_6d9e8_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Baseline</th>
-<th id="T_6d9e8_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Faster</th>
-<th id="T_6d9e8_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Slower</th>
+<th id="T_scenario-shares_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Baseline</th>
+<th id="T_scenario-shares_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Faster</th>
+<th id="T_scenario-shares_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Slower</th>
 </tr>
 <tr class="even">
 <th class="index_name level0" data-quarto-table-cell-role="th">year</th>
@@ -535,40 +539,40 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<th id="T_6d9e8_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2025</th>
-<td id="T_6d9e8_row0_col0" class="data row0 col0">47.9%</td>
-<td id="T_6d9e8_row0_col1" class="data row0 col1">47.9%</td>
-<td id="T_6d9e8_row0_col2" class="data row0 col2">47.9%</td>
+<th id="T_scenario-shares_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2025</th>
+<td id="T_scenario-shares_row0_col0" class="data row0 col0">47.9%</td>
+<td id="T_scenario-shares_row0_col1" class="data row0 col1">47.9%</td>
+<td id="T_scenario-shares_row0_col2" class="data row0 col2">47.9%</td>
 </tr>
 <tr class="even">
-<th id="T_6d9e8_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2026</th>
-<td id="T_6d9e8_row1_col0" class="data row1 col0">54.2%</td>
-<td id="T_6d9e8_row1_col1" class="data row1 col1">56.6%</td>
-<td id="T_6d9e8_row1_col2" class="data row1 col2">51.7%</td>
+<th id="T_scenario-shares_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2026</th>
+<td id="T_scenario-shares_row1_col0" class="data row1 col0">54.2%</td>
+<td id="T_scenario-shares_row1_col1" class="data row1 col1">56.6%</td>
+<td id="T_scenario-shares_row1_col2" class="data row1 col2">51.7%</td>
 </tr>
 <tr class="odd">
-<th id="T_6d9e8_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2027</th>
-<td id="T_6d9e8_row2_col0" class="data row2 col0">60.3%</td>
-<td id="T_6d9e8_row2_col1" class="data row2 col1">65.0%</td>
-<td id="T_6d9e8_row2_col2" class="data row2 col2">55.4%</td>
+<th id="T_scenario-shares_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2027</th>
+<td id="T_scenario-shares_row2_col0" class="data row2 col0">60.3%</td>
+<td id="T_scenario-shares_row2_col1" class="data row2 col1">65.0%</td>
+<td id="T_scenario-shares_row2_col2" class="data row2 col2">55.4%</td>
 </tr>
 <tr class="even">
-<th id="T_6d9e8_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2028</th>
-<td id="T_6d9e8_row3_col0" class="data row3 col0">66.1%</td>
-<td id="T_6d9e8_row3_col1" class="data row3 col1">72.5%</td>
-<td id="T_6d9e8_row3_col2" class="data row3 col2">59.1%</td>
+<th id="T_scenario-shares_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2028</th>
+<td id="T_scenario-shares_row3_col0" class="data row3 col0">66.1%</td>
+<td id="T_scenario-shares_row3_col1" class="data row3 col1">72.5%</td>
+<td id="T_scenario-shares_row3_col2" class="data row3 col2">59.1%</td>
 </tr>
 <tr class="odd">
-<th id="T_6d9e8_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2029</th>
-<td id="T_6d9e8_row4_col0" class="data row4 col0">71.5%</td>
-<td id="T_6d9e8_row4_col1" class="data row4 col1">78.9%</td>
-<td id="T_6d9e8_row4_col2" class="data row4 col2">62.7%</td>
+<th id="T_scenario-shares_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2029</th>
+<td id="T_scenario-shares_row4_col0" class="data row4 col0">71.5%</td>
+<td id="T_scenario-shares_row4_col1" class="data row4 col1">78.9%</td>
+<td id="T_scenario-shares_row4_col2" class="data row4 col2">62.7%</td>
 </tr>
 <tr class="even">
-<th id="T_6d9e8_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2030</th>
-<td id="T_6d9e8_row5_col0" class="data row5 col0">76.3%</td>
-<td id="T_6d9e8_row5_col1" class="data row5 col1">84.1%</td>
-<td id="T_6d9e8_row5_col2" class="data row5 col2">66.1%</td>
+<th id="T_scenario-shares_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2030</th>
+<td id="T_scenario-shares_row5_col0" class="data row5 col0">76.3%</td>
+<td id="T_scenario-shares_row5_col1" class="data row5 col1">84.1%</td>
+<td id="T_scenario-shares_row5_col2" class="data row5 col2">66.1%</td>
 </tr>
 </tbody>
 </table>
@@ -585,7 +589,7 @@ window.Quarto = {
 <section id="powertrain-composition-and-exports" class="level2">
 <h2 class="anchored" data-anchor-id="powertrain-composition-and-exports">4. Powertrain composition and exports</h2>
 <p>Reported powertrain components are reconciled to annual NEV totals within published rounding. Exports are enterprise-reported industry volumes; sales minus exports is labelled as a residual proxy rather than as a separately observed domestic-retail series.</p>
-<div id="0669c1a9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:30:43.236713Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:30:43.236713Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:30:43.257830Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:30:43.257830Z&quot;}}" data-execution_count="6">
+<div id="cell-12" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>powertrain <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"powertrain_mix_metrics.csv"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>exports <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"export_metrics.csv"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -727,7 +731,7 @@ window.Quarto = {
 <section id="fleet-turnover-sensitivities-and-held-out-check" class="level2">
 <h2 class="anchored" data-anchor-id="fleet-turnover-sensitivities-and-held-out-check">5. Fleet-turnover sensitivities and held-out check</h2>
 <p>The stock-flow model starts from end-2025 registered stock, holds the domestic-inflow proxy constant, and makes every turnover rate and retirement-allocation weight explicit. The model output is a sensitivity calculation, not a registration forecast.</p>
-<div id="6f736c0e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-07-15T01:30:43.258879Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-07-15T01:30:43.258879Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-07-15T01:30:43.289843Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-07-15T01:30:43.289843Z&quot;}}" data-execution_count="7">
+<div id="cell-14" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fleet_model <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"fleet_turnover_scenarios.csv"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>backtest <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"sales_share_backtest_2023_2025.csv"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>

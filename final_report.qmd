@@ -1,0 +1,525 @@
+---
+title: "China's New-Energy Vehicle Transition Research"
+subtitle: "From a sales tipping point to fleet-wide transformation"
+author: "Yang Haoyuan"
+date: "18 July 2026"
+date-format: "D MMMM YYYY"
+lang: en
+abstract: |
+  China has passed a major new-energy vehicle (NEV) sales milestone, but the
+  transition of the vehicles already on the road remains much slower. This
+  project combines official market, fleet, charging, powertrain, and export
+  evidence to measure that flow-stock gap. It finds that NEVs reached 50.8% of
+  domestic new-vehicle sales in 2025 but only 12.0% of the registered
+  automobile fleet, a difference of 38.8 percentage points. The project also
+  documents rapid charging-network expansion, a growing PHEV/range-extender
+  share, rising NEV exports, bounded sales-share sensitivities to 2030, and an
+  auditable fleet-turnover model through 2035. Older manually transcribed data
+  were independently checked, source evidence was archived with SHA-256
+  checksums, and machine-readable schemas plus automated tests enforce data
+  quality. The report emphasizes definitions, uncertainty, bottlenecks, and
+  reproducibility rather than presenting the scenarios as causal forecasts.
+bibliography: references.bib
+link-citations: true
+format:
+  typst:
+    toc: true
+    toc-depth: 2
+    section-numbering: "1.1"
+    papersize: a4
+    margin:
+      top: 2.1cm
+      bottom: 2.1cm
+      left: 2.2cm
+      right: 2.2cm
+    fontsize: 10.5pt
+    page-numbering: "1"
+    syntax-highlighting: github
+    fig-cap-location: bottom
+    tbl-cap-location: top
+execute:
+  enabled: false
+---
+
+| Course | SUM26001 Final Project |
+|---|---|
+| Release | 1.0.0 |
+| Student | Yang Haoyuan |
+| Student ID | 202320108112 |
+| Repository | [hyang9689-hash/china-nev-transition](https://github.com/hyang9689-hash/china-nev-transition) |
+| Published website | [China NEV Transition](https://hyang9689-hash.github.io/china-nev-transition/) |
+| Data vintage | 14 July 2026 |
+
+> **The argument in one sentence:** China has crossed the domestic new-sales
+> tipping point for NEVs, but it has not yet transformed the vehicles already
+> on the road.
+
+# Problem statement and objectives
+
+## The problem
+
+Headlines often treat a high NEV share of new sales as if the whole automobile
+fleet has already become electric. That interpretation confuses a **flow** with
+a **stock**. New-vehicle sales measure activity during a period, while the
+registered fleet contains vehicles accumulated over many years. Charging
+connectors, powertrain composition, and exports add further denominators that
+cannot be combined without definition controls.
+
+The central research question is:
+
+> **How quickly are China's rapidly growing NEV sales translating into changes
+> in the registered vehicle fleet, charging network, powertrain mix, and export
+> market?**
+
+## Objectives
+
+The project has six objectives:
+
+1. Build a verified annual automobile and NEV sales series for 2015-2025.
+2. Quantify the difference between the NEV share of new sales and the NEV share
+   of the registered fleet.
+3. Measure charging-network growth without hiding the 2025 methodology break.
+4. Extend the analysis to BEV, PHEV/range-extender, FCEV, and exports.
+5. Construct bounded sales-share sensitivities and an auditable fleet-turnover
+   model through 2035.
+6. Make the full project reproducible through source records, checksums, data
+   contracts, tests, an executed notebook, Git history, and automated publishing.
+
+# From the original idea to the final scope
+
+The original proposal focused on a campus survey about student car culture and
+automotive preferences. That idea was interesting, but it depended on survey
+recruitment, consent, anonymization, and a response sample that could not be
+guaranteed within the project period. The project therefore changed from a
+small primary-data survey to a reproducible public-data study of China's NEV
+transition.
+
+This was not only a change of topic. It produced a stronger analytical problem:
+official sources report sales, production, exports, registrations, fleet stock,
+and charging infrastructure using different scopes. The final project turns
+those differences into the central research design rather than treating them
+as inconveniences.
+
+# Data and evidence
+
+## Source strategy
+
+The project prioritizes official or first-party publications from the China
+Association of Automobile Manufacturers (CAAM), the Ministry of Industry and
+Information Technology (MIIT), the National Bureau of Statistics (NBS), the
+National Energy Administration (NEA), the National Development and Reform
+Commission (NDRC), and public-security reporting. The annual market series
+combines historical CAAM charts with later official annual summaries
+[@caam2021autoseries; @caam2021nevseries; @caam2022autosales;
+@caam2022nevsales; @caam2023autosales; @caam2023nevsales;
+@caam2024autosales; @caam2024nevsales; @gov2025auto; @miit2026auto].
+
+Fleet observations come from national statistical and public-security sources
+[@nbs2025communique; @nbs2026communique; @mps2026fleet]. Charging observations
+and the official 2027 target come from the NEA and NDRC
+[@nea2025charging; @nea2026charging; @nea2026may; @ndrc2025target].
+
+## Dataset inventory
+
+| Evidence block | Coverage | Analytical role |
+|---|---:|---|
+| Automobile and NEV sales | 2015-2025 | Scale, growth, and NEV sales share |
+| Registered fleet and charging | 2024-2026 snapshots | Flow-stock gap and infrastructure ratios |
+| BEV, PHEV, and FCEV composition | 2020-2024 | Powertrain mix and reconciliation |
+| Automobile and NEV exports | 2021-2025 | Export scale and domestic residual cross-check |
+| Current market pulse | H1 and June 2026 | Context kept separate from annual observations |
+| Scenario and turnover tables | 2025-2035 | Bounded sensitivities and stock-flow accounting |
+| Source register and snapshots | 18 archived records | Provenance, definitions, and checksum verification |
+
+## Data-quality controls
+
+Older manually transcribed values were independently double-entered against
+separate official evidence. Each archived source capture has a SHA-256 checksum
+and byte count. A machine-readable data dictionary defines fields, types,
+ranges, keys, and cross-file rules. Automated tests reject duplicate keys,
+impossible ranges, unreconciled powertrain totals, impossible export values,
+invalid probabilities, and stock-flow accounting errors.
+
+These controls matter because the project is small enough for every important
+number to be inspectable. The goal is not a large opaque database; it is a
+defensible chain from source to claim.
+
+# Methods
+
+## Descriptive indicators
+
+The core calculations are deliberately simple:
+
+$$
+\text{NEV share}_t =
+\frac{\text{NEV sales}_t}{\text{total automobile sales}_t}\times 100
+$$
+
+$$
+\text{YoY growth}_t =
+\left(\frac{x_t}{x_{t-1}}-1\right)\times 100
+$$
+
+$$
+\text{CAGR} =
+\left(\frac{x_{end}}{x_{start}}\right)^{1/n}-1
+$$
+
+The 2025 contribution of NEVs to net market growth is the change in NEV sales
+divided by the change in total automobile sales. A value above 100% is possible
+when the non-NEV component contracts.
+
+## Bounded sales-share sensitivities
+
+A straight-line share projection can exceed 100%, so the scenario model works
+in log-odds space:
+
+$$
+\operatorname{logit}(p_{t+h}) = \operatorname{logit}(p_t) + hg
+$$
+
+The slower, baseline, and faster sensitivities use gains of 0.15, 0.25, and
+0.35. They are illustrations of different adoption paths, not probabilities or
+causal forecasts. A trend fitted only to 2015-2022 was tested on 2023-2025 to
+measure form error before presenting future paths.
+
+## Fleet-turnover accounting
+
+The fleet model starts from the observed end-2025 stock and applies this annual
+identity:
+
+$$
+\text{ending stock}
+=
+\text{opening stock}
++
+\text{inflow}
+-
+\text{retirements}
+$$
+
+The three scenario bundles vary the annual total-fleet turnover rate and the
+NEV share of domestic inflow. NEVs receive a lower near-term retirement weight
+because their registered stock is younger. All rates and weights are stored in
+`data/manual/fleet_turnover_assumptions.csv`, and every modeled row is tested
+for the stock-flow identity.
+
+# Results
+
+## Market growth changed scale after 2020
+
+![Four views of China's NEV transition: annual sales, total-sales share, the 2025 domestic-sales versus fleet-stock gap, and charging connector levels.](figures/first_look_dashboard.png){#fig-dashboard width=100% fig-alt="Dashboard showing NEV sales, sales share, the sales-flow versus fleet-stock gap, and charging connector growth."}
+
+NEV sales rose from **0.331 million in 2015** to **16.490 million in 2025**,
+equivalent to a **47.8% ten-year CAGR**. The NEV share of total CAAM automobile
+sales increased from **1.3% to 47.9%**.
+
+| Year | Total auto sales (m) | NEV sales (m) | Derived NEV share |
+|---:|---:|---:|---:|
+| 2015 | 24.60 | 0.33 | 1.3% |
+| 2020 | 25.31 | 1.37 | 5.4% |
+| 2021 | 26.28 | 3.52 | 13.4% |
+| 2023 | 30.09 | 9.50 | 31.6% |
+| 2024 | 31.44 | 12.87 | 40.9% |
+| 2025 | 34.40 | 16.49 | 47.9% |
+
+From 2024 to 2025, total automobile sales increased by 2.964 million while NEV
+sales increased by 3.624 million. NEVs therefore accounted for **122.3% of net
+market growth**; the residual estimate of non-NEV sales fell by 0.660 million.
+
+## The central result is a 38.8-point flow-stock gap
+
+In 2025, NEVs were **50.8% of domestic new-vehicle sales**, but China had only
+**43.97 million NEVs in a 366.11 million civilian automobile fleet**, or
+approximately **12.0%** [@nbs2026communique; @mps2026fleet]. The difference is
+**38.8 percentage points**.
+
+This is not a data inconsistency. New sales can change quickly, while the fleet
+turns over slowly because it contains vehicles registered over many years. The
+gap is the transition itself.
+
+## Charging expanded rapidly, with a documented break
+
+The NEA reported **20.092 million connectors** at end-2025: 4.717 million public
+and 15.375 million private. Private connectors were **76.5%** of the network.
+The stock implied **2.19 registered NEVs per connector**, or **9.32 per public
+connector** [@nea2026charging].
+
+The agency also introduced a new national reporting system and changed the
+statistical scope during 2025 [@nea2025method]. The project therefore does not
+divide the old-scope end-2024 figure by the revised-scope end-2025 figure. It
+uses the agency's reported 49.7% growth and marks the break visibly.
+
+By end-May 2026, China had **22.497 million connectors**, already **80.3%** of
+the official end-2027 target of at least 28 million [@nea2026may;
+@ndrc2025target].
+
+## PHEVs changed the mix and exports changed the market boundary
+
+![BEV, PHEV/range-extender, and FCEV deliveries alongside total automobile and NEV exports.](figures/powertrain_exports.png){#fig-powertrain width=100% fig-alt="Two-panel chart showing the changing NEV powertrain mix and growth of automobile and NEV exports."}
+
+Reported BEV deliveries rose from **1.115 million in 2020** to **7.719 million
+in 2024**, while PHEV/range-extender deliveries rose from **0.251 million** to
+**5.141 million**. The PHEV share of reported NEV deliveries therefore increased
+from **18.4% to 40.0%** [@miit2021composition; @caam2022nevsales;
+@caam2023nevsales; @caam2024nevsales; @nbs2024industry].
+
+Total automobile exports increased from **2.015 million in 2021** to **7.098
+million in 2025**, while NEV exports rose from **0.310 million to 2.615
+million**. NEVs increased from **15.4% to 36.8% of automobile exports**, and
+total exports reached **20.6% of CAAM industry deliveries**
+[@miit2022exports; @miit2023exports; @miit2024exports; @miit2025exports;
+@caam2026exports].
+
+Subtracting enterprise-reported exports from industry deliveries produces a
+2025 non-export residual NEV share of 50.8%, close to the separately reported
+domestic share. This is a useful cross-check, not a replacement for official
+domestic statistics.
+
+## The 2026 pulse is context, not a completed year
+
+CAAM reported **7.446 million NEV sales in the first half of 2026**. The H1
+share of total CAAM sales was 49.6%, while the single-month June share reached
+58.5% [@gov2026h1; @miit2026june]. These observations are displayed separately
+and never appended to the 2015-2025 annual series.
+
+## Bounded sales-share paths still have form error
+
+![Observed annual NEV sales share followed by three bounded log-odds sensitivities to 2030.](figures/scenario_paths.png){#fig-scenarios width=92% fig-alt="Observed NEV sales share through 2025 and slower, baseline, and faster paths through 2030."}
+
+The three sensitivities imply 2030 total-sales shares of approximately **67%,
+76%, and 84%**. A held-out test fitted on 2015-2022 and evaluated on 2023-2025
+underpredicted all three observations. Its mean absolute error was **5.34
+percentage points**. This result is reported to show model limitation, not to
+claim predictive validation.
+
+## Fleet transformation remains slower than sales transformation
+
+![Fleet-turnover sensitivity results for annual domestic inflow share and registered fleet share through 2035.](figures/fleet_turnover_scenarios.png){#fig-turnover width=100% fig-alt="Two-panel chart showing fast change in the NEV share of inflow but slower change in the registered fleet share."}
+
+The baseline NEV share of annual domestic inflow reaches **78.3% in 2030**, but
+the NEV share of the registered fleet reaches only **33.4%**. By 2035, the
+baseline values are **92.6% of inflow** and **56.7% of fleet stock**. Across all
+three bundles, the modeled 2035 fleet share ranges from **50.2% to 63.3%**.
+
+| Scenario | 2030 NEV inflow share | 2030 NEV fleet share | 2035 NEV fleet share |
+|---|---:|---:|---:|
+| Conservative | 68.6% | 31.6% | 50.2% |
+| Baseline | 78.3% | 33.4% | 56.7% |
+| Accelerated | 85.6% | 35.7% | 63.3% |
+
+These values quantify the flow-stock lag under explicit assumptions. They are
+not registration forecasts.
+
+# Bottlenecks and accommodations
+
+## Bottleneck 1: The original survey could not guarantee sufficient evidence
+
+**Core challenge.** Measure automotive preferences through a campus survey.
+
+**Where the project got stuck.** A credible survey required recruitment,
+consent, anonymization, and enough responses for subgroup comparisons. Those
+conditions could not be guaranteed within the course schedule.
+
+**Change made.** The project moved to a national public-data research question
+with auditable official sources.
+
+**Solution found.** The new design produced a reproducible longitudinal study
+and a clearer quantitative contribution: separating new-sales flow from fleet
+stock.
+
+## Bottleneck 2: Older values were manually transcribed
+
+**Core challenge.** Use 2015-2020 historical charts without treating one manual
+entry as unquestioned truth.
+
+**Where the project got stuck.** Machine-readable official files were not
+consistently available, and transcription could introduce silent errors.
+
+**Change made.** Older values were independently double-entered against separate
+official evidence, with tolerances and pass/fail records.
+
+**Solution found.** All pre-2021 checks passed, and the audit table now links
+each comparison to a registered source ID.
+
+## Bottleneck 3: Source pages and definitions can change
+
+**Core challenge.** Preserve enough evidence for another person to audit the
+project after publication.
+
+**Where the project got stuck.** Web pages can be updated, removed, or reported
+with ambiguous definitions.
+
+**Change made.** The project added curated text captures, a source register,
+retrieval dates, definition notes, byte counts, and SHA-256 checksums.
+
+**Solution found.** A schema validator now verifies every archived capture and
+connects processed rows to registered source IDs.
+
+## Bottleneck 4: The charging series changed scope
+
+**Core challenge.** Describe charging growth across 2024-2025.
+
+**Where the project got stuck.** The NEA changed the statistical scope during
+2025, so direct division would create a misleading growth rate.
+
+**Change made.** The chart displays the break, the report uses the agency's
+source-reported 49.7% growth, and no calculated cross-break rate is presented.
+
+**Solution found.** The analysis remains useful while explicitly preserving
+the limitation. Future work starts a consistent monthly series after the break.
+
+## Bottleneck 5: Windows and Linux normalized text differently
+
+**Core challenge.** Make archived-source checksums pass both locally and in
+GitHub Actions.
+
+**Where the project got stuck.** A Windows working file ended with CRLF while
+the committed Git blob used LF, causing the first Linux CI run to report a
+checksum mismatch.
+
+**Change made.** Snapshot text was explicitly configured as LF, and the manifest
+was registered against canonical committed-blob bytes.
+
+**Solution found.** The corrected workflow passed all tests on Linux and then
+deployed the site. The failed and successful runs remain documented in
+`PUBLICATION_LOG.md`.
+
+# Reproducibility and Git evidence
+
+## One-command local rebuild
+
+The reference toolchain uses Python 3.12 and Quarto 1.9.38. Windows users can
+reproduce analysis, notebook execution, tests, website, final PDF, and
+validation with:
+
+```powershell
+.\scripts\rebuild.ps1
+```
+
+The locked cross-platform sequence is:
+
+```bash
+uv sync --frozen --python 3.12
+uv run --frozen python scripts/build_analysis.py
+uv run --frozen python scripts/build_notebook.py
+uv run --frozen python -m nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb --ExecutePreprocessor.timeout=120 --ExecutePreprocessor.record_timing=False
+uv run --frozen python -m unittest discover -s tests -v
+quarto render
+quarto render final_report.qmd --output final_report.pdf
+uv run --frozen python scripts/validate_project.py
+```
+
+## Git history as process evidence
+
+The repository was not uploaded as one final file dump. It contains a sequence
+of focused commits that show how the project developed.
+
+| Commit | Stage | Evidence |
+|---|---|---|
+| `39de674` | Scaffold | Reproducible project structure |
+| `b743538` | Research design | Question and source protocol |
+| `b0618fa` | Data | Verified market, fleet, and charging snapshots |
+| `b55fe5f` | Analysis | Indicators and bounded scenarios |
+| `dd2754f` | Notebook | Executed exploratory analysis |
+| `67851fb` | Reporting | Cited Quarto narrative and website |
+| `87a8f20` | Verification | Independent pre-2021 double-entry audit |
+| `e65be68` | Provenance | Archived evidence and checksums |
+| `f9e0ded` | Testing | Machine-readable contracts and schema tests |
+| `5587588` | Extension | Powertrain and export analysis |
+| `ba02911` | Modeling | Fleet-turnover model through 2035 |
+| `0237256` | CI repair | Cross-platform checksum policy |
+| `358f15f` | Publication | v0.2.0 publication evidence |
+| `bd2ad4f` | Quality repair | Removed corrupted control characters |
+
+GitHub Actions independently rebuilds the tables and figures, executes the
+notebook, runs 20 unit/schema tests, renders both the website and final PDF,
+validates artifacts, and deploys GitHub Pages.
+
+# Individual contribution and lessons learned
+
+## Individual contribution
+
+This is a one-member project. **Yang Haoyuan** completed the research design,
+source collection, data transcription and independent verification, provenance
+archive, data dictionary, Python analysis, visualizations, powertrain and
+export extension, bounded scenarios, fleet-turnover model, tests, notebook,
+Quarto report, Git history, CI workflow, GitHub repository, and Pages
+publication.
+
+No teammate contribution or merge history is claimed. The commit history is
+presented as evidence of individual iteration and project management.
+
+## Lessons learned
+
+1. **Definitions are part of the analysis.** Sales, registrations, fleet stock,
+   exports, and charging connectors cannot be compared until their denominators
+   and scopes are explicit.
+2. **A high sales share does not equal a transformed fleet.** The flow-stock
+   distinction became the project's strongest explanatory idea.
+3. **Reproducibility catches real errors.** Schema tests, checksums, and Linux CI
+   exposed issues that visual inspection alone did not catch.
+4. **A limitation should be visible.** Marking the charging methodology break
+   is more credible than manufacturing a smooth but false series.
+5. **Models are communication tools when assumptions are visible.** The bounded
+   scenarios and fleet model are useful because their levers, identities, and
+   limits can be inspected; extra decimal places do not make them forecasts.
+6. **Project history strengthens the final result.** Small, focused commits made
+   it possible to identify when data, methods, tests, and publication decisions
+   changed.
+
+# Limitations and future improvements
+
+The project is descriptive and scenario-based. It does not claim that charging
+construction caused NEV adoption, and it does not treat 2026 partial-year data
+as a completed annual observation. CAAM industry deliveries, domestic retail
+sales, registrations, public-security fleet stock, and customs statistics are
+not interchangeable.
+
+The aggregate turnover model has no vehicle-age cohorts, scrappage-policy
+shocks, price response, or capacity constraints. Its constant inflow volume is
+an intentional sensitivity control, not a demand forecast. The next model
+version should use age-cohort survival functions if suitable registration data
+become available.
+
+Three practical extensions remain:
+
+1. Build a consistent monthly charging series from the revised reporting system
+   beginning in June 2025.
+2. Replace aggregate turnover weights with age-cohort retirement behavior.
+3. Add destination-level export analysis only after reconciling customs and
+   enterprise-reporting definitions.
+
+# Conclusion
+
+China's NEV transition is advanced in new sales but incomplete in the fleet.
+The 2025 domestic sales share of 50.8% and fleet share of 12.0% describe
+different stages of the same process. Charging infrastructure, PHEV growth, and
+exports show that the transition is broader than one sales-share line, while
+the turnover model explains why vehicles already on the road change more
+slowly.
+
+The project's main contribution is therefore both empirical and methodological:
+it quantifies the flow-stock lag and preserves the definition boundaries needed
+to interpret it. The source archive, machine-readable contracts, tests, Git
+history, executed notebook, PDF, and public website make that argument
+auditable rather than merely presentable.
+
+```{=typst}
+#pagebreak()
+```
+
+# Submission-format checklist {.unnumbered}
+
+| Course requirement | Location or evidence |
+|---|---|
+| Problem statement and objectives | Section 1 of this report |
+| Results or bottleneck documentation | Sections 5 and 6 |
+| Git collaboration/process evidence | Section 7 and repository history |
+| Storytelling | Original idea, scope change, evidence, results, bottlenecks, lessons, conclusion |
+| Final PDF in repository root | `final_report.pdf` |
+| Generating QMD in repository root | `final_report.qmd` |
+| README project/member/contribution information | `README.md` |
+| Required ignore rules | `.gitignore` |
+
+# References {.unnumbered}

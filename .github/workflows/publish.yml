@@ -40,7 +40,7 @@ jobs:
       - name: Rebuild and execute notebook
         run: |
           uv run --frozen python scripts/build_notebook.py
-          uv run --frozen python -m nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb --ExecutePreprocessor.timeout=120
+          uv run --frozen python -m nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb --ExecutePreprocessor.timeout=120 --ExecutePreprocessor.record_timing=False
 
       - name: Run unit and schema tests
         run: uv run --frozen python -m unittest discover -s tests -v
@@ -54,11 +54,16 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.9.38"
 
       - name: Render website
         run: quarto render
 
-      - name: Validate provenance notebook citations and rendered links
+      - name: Render final course PDF
+        run: quarto render final_report.qmd --output final_report.pdf
+
+      - name: Validate submission package provenance notebook citations and rendered links
         run: uv run --frozen python scripts/validate_project.py
 
       - name: Configure GitHub Pages
